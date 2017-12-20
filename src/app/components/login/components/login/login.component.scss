@@ -1,0 +1,58 @@
+@import "../../../../../assets/variables";
+
+.login-container {
+    &-top {
+        height: 30vh;
+        background: $base-color;
+    }
+
+    &-bottom {
+        background: $base-background;
+        height: 70vh;
+
+        &-content {
+            margin-top: -100px;
+            h3, h4 {
+                padding: 0;
+                margin: 0;
+                text-align: center;
+                text-transform: uppercase;
+                color: $header-color;
+                font-family: sans-serif;
+            }
+
+            h3 {
+                font-weight: 500;
+                font-size: 18px;
+            }
+
+            h4 {
+                font-weight: 300;
+                letter-spacing: 2px;
+                font-size: 9px;
+                margin-bottom: 16px;
+            }
+
+            mat-card {
+                width: 450px;
+                background: $form-background;
+
+                .logo {
+                    background: url("../../../../../assets/images/logo.png");
+                    background-repeat: no-repeat;
+                    background-size: 100%;
+                    width: 163px;
+                    height: 45px;
+                }
+
+                mat-card-actions {
+                    padding: 15px;
+
+                    button {
+                        text-transform: uppercase;
+                    }
+                }
+            }
+        }
+    }
+}

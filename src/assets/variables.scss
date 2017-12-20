@@ -1,0 +1,14 @@
+@import "./theme";
+
+$primary: map-get($urupagos-theme, primary);
+$accent: map-get($urupagos-theme, accent);
+$warn: map-get($urupagos-theme, warn);
+
+$base-color: mat-color($primary);
+$base-accent: mat-color($accent);
+$base-warn: mat-color($warn);
+
+$base-background: #f2f2f2;
+$form-background: white;
+$header-color: white;
+

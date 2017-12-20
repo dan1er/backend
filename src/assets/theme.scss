@@ -1,0 +1,9 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+$urupagos-primary: mat-palette($mat-indigo);
+$urupagos-accent: mat-palette($mat-pink, A200, A100, A400);
+$urupagos-warn: mat-palette($mat-red);
+$urupagos-theme: mat-light-theme($urupagos-primary, $urupagos-accent, $urupagos-warn);
+
+@include angular-material-theme($urupagos-theme);
