@@ -1,13 +1,10 @@
 import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs/Observable";
+import BaseService from "../../../shared/services/base.service";
 
 @Injectable()
-export class LoginService {
-    constructor(public httpClient: HttpClient) {
-    }
-
+export class LoginService extends BaseService {
     public login(username: string, password: string): Observable<Object> {
-        return this.httpClient.post("login", {username, password}, {responseType: "json"});
+        return this.httpClient.post(`${this.apiUrl}/authenticate`, {username, password}, {responseType: "json"});
     }
 }

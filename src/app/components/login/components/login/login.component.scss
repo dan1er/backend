@@ -53,6 +53,11 @@
                     }
                 }
             }
+
+            .error {
+                color: $base-warn;
+                font-size: 11px;
+            }
         }
     }
 }

@@ -1,16 +1,26 @@
-import {Component, OnInit} from "@angular/core";
-import {LoginService} from "../../services/login.service";
+import {Component} from "@angular/core";
+import {Store} from "@ngrx/store";
+import State from "../../../../shared/redux/state";
+import {LoginCreators, LoginSelectors} from "../../redux";
+import {Observable} from "rxjs/Observable";
 
 @Component({
     selector: "app-login",
     templateUrl: "./login.component.html",
     styleUrls: ["./login.component.scss"]
 })
-export class LoginComponent implements OnInit {
-    constructor(public loginService: LoginService) {
+export class LoginComponent {
+    public error$: Observable<boolean>;
+    public username: string;
+    public password: string;
+
+    constructor(private store: Store<State>) {
+        this.error$ = this.store.select(LoginSelectors.error);
     }
 
-    ngOnInit() {
-        this.loginService.login("dani", "da1l1nc1ta").subscribe();
+    public login(username: string, password: string): void {
+        this.store.dispatch(
+            LoginCreators.loginRequest(username, password)
+        );
     }
 }

@@ -6,10 +6,12 @@ import {
 } from "@angular/material";
 import {MatIconModule} from "@angular/material/icon";
 import {FlexLayoutModule} from "@angular/flex-layout";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
     imports: [
         CommonModule,
+        FormsModule,
         FlexLayoutModule,
         MatGridListModule,
         MatCardModule,
@@ -21,6 +23,7 @@ import {FlexLayoutModule} from "@angular/flex-layout";
         MatListModule
     ],
     exports: [
+        FormsModule,
         FlexLayoutModule,
         MatGridListModule,
         MatCardModule,

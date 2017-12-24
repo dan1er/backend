@@ -11,6 +11,12 @@ import {MainContainerModule} from "./components/main-container/main-container.mo
 import {AuthorizationInterceptor} from "./shared/interceptors/authorization.interceptor";
 import {ResponseInterceptor} from "./shared/interceptors/response.interceptor";
 import {AuthService} from "./shared/services/auth.service";
+import {StoreModule} from "@ngrx/store";
+import {StoreDevtoolsModule} from "@ngrx/store-devtools";
+import {EffectsModule} from "@ngrx/effects";
+import {StoreService} from "./shared/services/store.service";
+
+const reducers = {};
 
 @NgModule({
     declarations: [
@@ -23,11 +29,15 @@ import {AuthService} from "./shared/services/auth.service";
         BrowserAnimationsModule,
         FlexLayoutModule,
         AppRoutesModule,
+        StoreModule.forRoot(reducers),
+        StoreDevtoolsModule.instrument({maxAge: 50}),
+        EffectsModule.forRoot([]),
         LoginModule,
         MainContainerModule
     ],
     providers: [
         AuthService,
+        StoreService,
         {provide: HTTP_INTERCEPTORS, useClass: AuthorizationInterceptor, multi: true},
         {provide: HTTP_INTERCEPTORS, useClass: ResponseInterceptor, multi: true}
     ],
