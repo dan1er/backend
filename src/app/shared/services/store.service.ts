@@ -9,4 +9,8 @@ export class StoreService {
     public getProperty(propertyName: string): string | null {
         return localStorage.getItem(propertyName);
     }
+
+    public remove(propertyName: string): void {
+        localStorage.removeItem(propertyName);
+    }
 }

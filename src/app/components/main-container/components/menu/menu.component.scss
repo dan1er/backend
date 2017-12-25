@@ -1,0 +1,19 @@
+@import "../../../../../assets/variables";
+
+.mat-nav-list {
+    border-bottom: 1px solid rgba($base-color, .22);
+
+    .mat-list-item {
+        color: $menu-color;
+        font-size: 12px;
+        height: 40px;
+    }
+}
+
+h2 {
+    padding: 9px 0 0 20px;
+    margin: 0;
+    font-size: 14px;
+    color: $menu-color;
+    user-select: none;
+}

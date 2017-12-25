@@ -1,12 +1,13 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {
-    MatButtonModule, MatCardModule, MatGridListModule, MatInputModule, MatListModule, MatSidenavModule,
-    MatToolbarModule
+    MatButtonModule, MatCardModule, MatCheckboxModule, MatGridListModule, MatInputModule, MatListModule, MatMenuModule,
+    MatPaginatorModule, MatSidenavModule, MatTableModule, MatToolbarModule, MatTooltipModule
 } from "@angular/material";
 import {MatIconModule} from "@angular/material/icon";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {FormsModule} from "@angular/forms";
+import {CdkTableModule} from "@angular/cdk/table";
 
 @NgModule({
     imports: [
@@ -20,7 +21,13 @@ import {FormsModule} from "@angular/forms";
         MatSidenavModule,
         MatToolbarModule,
         MatIconModule,
-        MatListModule
+        MatListModule,
+        MatMenuModule,
+        MatTableModule,
+        CdkTableModule,
+        MatPaginatorModule,
+        MatCheckboxModule,
+        MatTooltipModule
     ],
     exports: [
         FormsModule,
@@ -32,7 +39,13 @@ import {FormsModule} from "@angular/forms";
         MatSidenavModule,
         MatToolbarModule,
         MatIconModule,
-        MatListModule
+        MatListModule,
+        MatMenuModule,
+        MatTableModule,
+        CdkTableModule,
+        MatPaginatorModule,
+        MatCheckboxModule,
+        MatTooltipModule
     ]
 })
 export class MaterialModule {

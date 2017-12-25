@@ -24,8 +24,33 @@ export const routes: Routes = [
         },
         children: [
             {
+                path: "",
+                redirectTo: "dashboard",
+                pathMatch: "full"
+            },
+            {
                 path: "dashboard",
                 loadChildren: "./components/main-container/components/dashboard/dashboard.module#DashboardModule"
+            },
+            {
+                path: "usuarios",
+                loadChildren: "./components/main-container/components/user/user.module#UserModule"
+            },
+            {
+                path: "agencias",
+                loadChildren: "./components/main-container/components/agency/agency.module#AgencyModule"
+            },
+            {
+                path: "servicios",
+                loadChildren: "./components/main-container/components/service/service.module#ServiceModule"
+            },
+            {
+                path: "nomencladores",
+                loadChildren: "./components/main-container/components/nomenclator/nomenclator.module#NomenclatorModule"
+            },
+            {
+                path: "variables",
+                loadChildren: "./components/main-container/components/variable/variable.module#VariableModule"
             }
         ]
     },

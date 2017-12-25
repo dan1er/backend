@@ -15,3 +15,27 @@ input:-webkit-autofill {
     -webkit-animation-name: autofill;
     -webkit-animation-fill-mode: both;
 }
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.mat-table {
+    .mat-row {
+        min-height: 36px;
+
+        .mat-cell {
+            font-size: 12px;
+        }
+    }
+}
+
+.mat-paginator-container {
+    justify-content: center !important;
+}
+
+.add-fab {
+    position: fixed !important;
+    bottom: 5px;
+    right: 5px;
+}

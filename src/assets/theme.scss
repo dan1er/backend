@@ -1,6 +1,11 @@
 @import '~@angular/material/theming';
 
-@include mat-core();
+$custom-typography: mat-typography-config(
+    $font-family: '-apple-system,system-ui,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif'
+);
+
+@include mat-core($custom-typography);
+
 $urupagos-primary: mat-palette($mat-indigo);
 $urupagos-accent: mat-palette($mat-pink, A200, A100, A400);
 $urupagos-warn: mat-palette($mat-red);

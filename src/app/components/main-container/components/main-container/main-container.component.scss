@@ -1,12 +1,25 @@
 @import "../../../../../assets/variables";
 
+$toolbar-height: 50px;
+
 .main-container {
+    mat-toolbar {
+        height: $toolbar-height;
+        box-shadow: 0 3px 14px $shadow-color;
+        position: relative;
+        z-index: 2;
+    }
+
     mat-drawer-container {
-        height: calc(100vh - 64px);
+        height: calc(100vh - 50px);
+
+        mat-card {
+            padding: 0;
+        }
     }
 
     mat-drawer {
-        width: 200px;
+        width: 215px;
         min-height: 100vh;
         background-color: $base-background;
     }
@@ -14,5 +27,9 @@
     mat-drawer-content {
         padding: 15px;
         background-color: $base-background;
+    }
+
+    .mat-toolbar-multiple-rows {
+        min-height: $toolbar-height;
     }
 }

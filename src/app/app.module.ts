@@ -15,6 +15,7 @@ import {StoreModule} from "@ngrx/store";
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {EffectsModule} from "@ngrx/effects";
 import {StoreService} from "./shared/services/store.service";
+import {OverlayModule} from "@angular/cdk/overlay";
 
 const reducers = {};
 
@@ -28,6 +29,7 @@ const reducers = {};
         RouterModule,
         BrowserAnimationsModule,
         FlexLayoutModule,
+        OverlayModule,
         AppRoutesModule,
         StoreModule.forRoot(reducers),
         StoreDevtoolsModule.instrument({maxAge: 50}),
