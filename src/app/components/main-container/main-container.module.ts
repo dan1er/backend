@@ -4,12 +4,14 @@ import {MainContainerComponent} from "./components/main-container/main-container
 import {MaterialModule} from "../../material.module";
 import {RouterModule} from "@angular/router";
 import {MenuComponent} from "./components/menu/menu.component";
+import {LoaderModule} from "../../shared/modules/loader/loader.module";
 
 @NgModule({
     imports: [
         CommonModule,
         RouterModule,
-        MaterialModule
+        MaterialModule,
+        LoaderModule
     ],
     declarations: [MainContainerComponent, MenuComponent]
 })
