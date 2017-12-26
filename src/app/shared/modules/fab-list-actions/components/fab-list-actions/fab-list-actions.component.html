@@ -1,0 +1,31 @@
+<div fxLayout="column wrap"
+     fxLayoutGap="5px"
+     class="fab-actions">
+    <button mat-fab
+            class="delete-fab"
+            color="warn"
+            matTooltip="Eliminar"
+            matTooltipPosition="left"
+            *ngIf="canEdit"
+            (click)="deleteClick.emit()">
+        <mat-icon>delete</mat-icon>
+    </button>
+
+    <button mat-fab
+            class="update-fab"
+            matTooltip="Editar"
+            matTooltipPosition="left"
+            *ngIf="canEdit"
+            (click)="editClick.emit()">
+        <mat-icon>mode_edit</mat-icon>
+    </button>
+
+    <button mat-fab
+            class="add-fab"
+            color="primary"
+            matTooltip="Adicionar"
+            matTooltipPosition="left"
+            (click)="addClick.emit()">
+        <mat-icon>add</mat-icon>
+    </button>
+</div>

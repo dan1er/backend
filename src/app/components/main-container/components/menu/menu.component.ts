@@ -1,4 +1,5 @@
-import {Component, isDevMode} from "@angular/core";
+import {Component} from "@angular/core";
+import {environment} from "../../../../../environments/environment";
 
 interface IMenuItem {
     label: string;
@@ -70,7 +71,7 @@ export class MenuComponent {
             }
         ];
 
-        if (isDevMode()) {
+        if (environment.production) {
             this.systemItems.push(
                 {
                     label: "Swagger",

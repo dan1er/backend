@@ -16,6 +16,8 @@ import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {EffectsModule} from "@ngrx/effects";
 import {StoreService} from "./shared/services/store.service";
 import {OverlayModule} from "@angular/cdk/overlay";
+import {SharedConstantsService} from "./shared/services/shared-constants.service";
+import {StoreRouterConnectingModule} from "@ngrx/router-store";
 
 const reducers = {};
 
@@ -34,12 +36,14 @@ const reducers = {};
         StoreModule.forRoot(reducers),
         StoreDevtoolsModule.instrument({maxAge: 50}),
         EffectsModule.forRoot([]),
+        StoreRouterConnectingModule,
         LoginModule,
         MainContainerModule
     ],
     providers: [
         AuthService,
         StoreService,
+        SharedConstantsService,
         {provide: HTTP_INTERCEPTORS, useClass: AuthorizationInterceptor, multi: true},
         {provide: HTTP_INTERCEPTORS, useClass: ResponseInterceptor, multi: true}
     ],

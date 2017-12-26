@@ -34,8 +34,10 @@ input:-webkit-autofill {
     justify-content: center !important;
 }
 
-.add-fab {
-    position: fixed !important;
-    bottom: 5px;
-    right: 5px;
+.table-row-5p {
+    flex: 0 0 5% !important;
+}
+
+.edit-form {
+    padding: 15px;
 }

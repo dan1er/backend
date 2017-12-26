@@ -76,3 +76,16 @@ export default class Agency {
     }
 }
 
+export class BasicAgency {
+    public id: number;
+    public name: string;
+
+    constructor(agencyData: BasicAgency = <BasicAgency>{}) {
+        if (agencyData.id) {
+            this.id = agencyData.id;
+        }
+
+        this.name = agencyData.name;
+    }
+}
+

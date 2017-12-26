@@ -1,0 +1,41 @@
+<mat-form-field fxFlexFill>
+    <input matInput
+           [type]="type"
+           #field="ngModel"
+           name="field"
+           [placeholder]="placeholder"
+           [required]="required"
+           [readonly]="readonly"
+           [pattern]="pattern"
+           [disabled]="disabled"
+           [ngModel]="model"
+           [passwordValidator]="matchValue"
+           (ngModelChange)="onChange($event)">
+    <mat-error *ngIf="field.hasError('required')">
+        {{sharedConstants.FIELD_REQUIRED_MESSAGE}}
+    </mat-error>
+    <mat-error *ngIf="field.hasError('minlength')">
+        {{sharedConstants.FIELD_MIN_LENGTH_MESSAGE}}
+    </mat-error>
+    <mat-error *ngIf="field.hasError('maxlength')">
+        {{sharedConstants.FIELD_MAX_LENGTH_MESSAGE}}
+    </mat-error>
+    <mat-error *ngIf="field.hasError('min')">
+        {{sharedConstants.FIELD_MIN_MESSAGE}}
+    </mat-error>
+    <mat-error *ngIf="field.hasError('max')">
+        {{sharedConstants.FIELD_MAX_MESSAGE}}
+    </mat-error>
+    <mat-error *ngIf="field.hasError('number')">
+        {{sharedConstants.FIELD_WRONG_NUMBER_MESSAGE}}
+    </mat-error>
+    <mat-error *ngIf="field.hasError('match')">
+        {{sharedConstants.NOT_EQUAL_TO_MESSAGE}}
+    </mat-error>
+    <mat-error *ngIf="field.hasError('email')">
+        {{sharedConstants.FIELD_EMAIL_MESSAGE}}
+    </mat-error>
+    <mat-error *ngIf="field.hasError('pattern')">
+        {{sharedConstants.FIELD_INVALID_MESSAGE}}
+    </mat-error>
+</mat-form-field>
