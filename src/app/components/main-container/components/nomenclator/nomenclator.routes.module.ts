@@ -2,6 +2,7 @@ import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
 import {ListComponent} from "./components/list/list.component";
 import {EditComponent} from "./components/edit/edit.component";
+import {FiltersComponent} from "./components/filters/filters.component";
 
 const routes: Routes = [
     {
@@ -24,6 +25,14 @@ const routes: Routes = [
         data: {
             title: "Editar nomenclador"
         }
+    },
+    {
+        path: "filtros",
+        component: FiltersComponent,
+        data: {
+            title: "Filters"
+        },
+        outlet: "right"
     }
 ];
 

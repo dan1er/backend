@@ -10,12 +10,20 @@
             <div class="spacer"></div>
 
             <button mat-icon-button
+                    *ngIf="filterActionVisible$|async"
+                    (click)="toggleFilters()">
+                <mat-icon>filter_list</mat-icon>
+            </button>
+
+            <button mat-icon-button
                     [matMenuTriggerFor]="userMenu">
                 <mat-icon>account_circle</mat-icon>
             </button>
 
             <mat-menu #userMenu="matMenu">
-                <button mat-menu-item (click)="logout()"> Salir</button>
+                <button mat-menu-item
+                        (click)="logout()"> Salir
+                </button>
             </mat-menu>
         </mat-toolbar-row>
     </mat-toolbar>
@@ -25,6 +33,7 @@
                     opened="true">
             <app-menu></app-menu>
         </mat-drawer>
+
         <mat-drawer-content>
             <mat-card>
                 <mat-card-content>
@@ -32,6 +41,12 @@
                 </mat-card-content>
             </mat-card>
         </mat-drawer-content>
+
+        <mat-drawer mode="side"
+                    position="end"
+                    [opened]="filtersVisible$|async">
+            <router-outlet name="right"></router-outlet>
+        </mat-drawer>
     </mat-drawer-container>
 
     <app-loader></app-loader>

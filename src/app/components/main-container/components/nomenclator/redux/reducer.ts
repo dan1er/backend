@@ -7,23 +7,25 @@ import {NomenclatorType} from "../../../../../shared/model/nomenclator-type.mode
 export interface INomenclatorState {
     nomenclators: Nomenclator[];
     selected?: Nomenclator;
-    nomenclatorTypes: NomenclatorType[];
+    nomenclatorTypes: { label: string, value: NomenclatorType }[];
     pageData: Paging;
+    appliedFilters: NomenclatorType[];
 }
 
 const nomenclatorTypes = [
-    NomenclatorType.Bank,
-    NomenclatorType.BankAccountType,
-    NomenclatorType.Currency,
-    NomenclatorType.PaymentStatus,
-    NomenclatorType.PolicyCompany,
-    NomenclatorType.Department
+    {label: "Banco", value: NomenclatorType.Bank},
+    {label: "Tipo de cuenta bancaria", value: NomenclatorType.BankAccountType},
+    {label: "Moneda", value: NomenclatorType.Currency},
+    {label: "Estado de pago", value: NomenclatorType.PaymentStatus},
+    {label: "Empresa de seguro", value: NomenclatorType.PolicyCompany},
+    {label: "Departamento", value: NomenclatorType.Department}
 ];
 
 export const INITIAL_STATE: INomenclatorState = {
     nomenclators: [],
     nomenclatorTypes,
-    pageData: new Paging()
+    pageData: new Paging(),
+    appliedFilters: []
 };
 
 export const request = (state = INITIAL_STATE) => {
@@ -54,6 +56,10 @@ export const updatePageData = (state = INITIAL_STATE, action: any) => {
     return {...state, pageData: action.data};
 };
 
+export const updateAppliedFilters = (state = INITIAL_STATE, action: any) => {
+    return {...state, appliedFilters: action.filters};
+};
+
 export const HANDLERS = {
     [NomenclatorTypes.LOAD_NOMENCLATORS_REQUEST]: request,
     [NomenclatorTypes.LOAD_NOMENCLATORS_SUCCESS]: success,
@@ -61,7 +67,8 @@ export const HANDLERS = {
     [NomenclatorTypes.SELECT]: select,
     [NomenclatorTypes.LOAD_DATA_SUCCESS]: loadDataSuccess,
     [NomenclatorTypes.LOAD_DATA_FAILURE]: loadDataFailure,
-    [NomenclatorTypes.UPDATE_PAGE_DATA]: updatePageData
+    [NomenclatorTypes.UPDATE_PAGE_DATA]: updatePageData,
+    [NomenclatorTypes.UPDATE_APPLIED_FILTERS]: updateAppliedFilters
 };
 
 export default createReducer(INITIAL_STATE, HANDLERS);

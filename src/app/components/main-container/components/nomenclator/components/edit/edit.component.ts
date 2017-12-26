@@ -15,7 +15,7 @@ import Nomenclator from "../../../../../../shared/model/nomenclator";
     styleUrls: ["./edit.component.scss"]
 })
 export class EditComponent implements OnInit {
-    public nomenclatorTypes$: Observable<NomenclatorType[]>;
+    public nomenclatorTypes$: Observable<any[]>;
     public nomenclator: Nomenclator = new Nomenclator(NomenclatorType.Bank);
 
     constructor(public sharedConstants: SharedConstantsService, private store: Store<State>, private route: ActivatedRoute) {

@@ -26,8 +26,8 @@
                         required
                         [(ngModel)]="nomenclator.type">
                 <mat-option *ngFor="let item of nomenclatorTypes$|async"
-                            [value]="item">
-                    {{ item }}
+                            [value]="item.value">
+                    {{ item.label }}
                 </mat-option>
             </mat-select>
             <mat-error *ngIf="nomenclatorType.hasError('required')">

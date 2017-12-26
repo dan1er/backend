@@ -12,6 +12,7 @@ import {EditComponent} from "./components/edit/edit.component";
 import {FormFieldModule} from "../../../../shared/modules/form-field/form-field.module";
 import {AgencyModule} from "../agency/agency.module";
 import {MessagesModule} from "../../../../shared/modules/messages/messages.module";
+import {FiltersComponent} from "./components/filters/filters.component";
 
 @NgModule({
     imports: [
@@ -27,7 +28,8 @@ import {MessagesModule} from "../../../../shared/modules/messages/messages.modul
     ],
     declarations: [
         ListComponent,
-        EditComponent
+        EditComponent,
+        FiltersComponent
     ],
     providers: [
         NomenclatorService

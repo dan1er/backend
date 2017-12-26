@@ -7,12 +7,13 @@ import {Observable} from "rxjs/Observable";
 import {Action, Store} from "@ngrx/store";
 import {of} from "rxjs/observable/of";
 import {NomenclatorCreators, NomenclatorTypes} from "./actions";
-import {pageData} from "./selectors";
+import {filters, pageData} from "./selectors";
 import {Router} from "@angular/router";
 import State from "../../../../../shared/redux/state";
 import "rxjs/add/operator/withLatestFrom";
 import {HttpResponse} from "@angular/common/http";
 import Nomenclator from "../../../../../shared/model/nomenclator";
+import {NomenclatorType} from "../../../../../shared/model/nomenclator-type.model";
 
 @Injectable()
 export default class NomenclatorEffects {
@@ -25,11 +26,19 @@ export default class NomenclatorEffects {
     @Effect()
     nomenclator$: Observable<Action> = this.actions$.ofType(NomenclatorTypes.LOAD_NOMENCLATORS_REQUEST)
         .withLatestFrom(this.store.select(pageData))
-        .mergeMap(([, data]) =>
+        .withLatestFrom(this.store.select(filters))
+        .mergeMap(([[, data], appliedFilters]) =>
             this.nomenclatorService.loadNomenclators(data)
-                .switchMap((response: HttpResponse<any>) => [
-                    NomenclatorCreators.loadNomenclatorsSuccess(response.body)
-                ])
+                .switchMap((response: HttpResponse<any>) => {
+                    const nomenclators = (appliedFilters && appliedFilters.length)
+                        ? response.body
+                            .filter((item: Nomenclator) => !!appliedFilters.find((filter: NomenclatorType) => filter === item.type))
+                        : response.body;
+
+                    return [
+                        NomenclatorCreators.loadNomenclatorsSuccess(nomenclators)
+                    ];
+                })
                 .catch((error: Error) => {
                     return of(NomenclatorCreators.loadNomenclatorsFailure(error.message));
                 })
@@ -80,4 +89,8 @@ export default class NomenclatorEffects {
     goToList$: Observable<Action> = this.actions$.ofType(NomenclatorTypes.GO_TO_LIST)
         .map((action: any) => action.path)
         .do((path: string[]) => this.router.navigate(path));
+
+    @Effect()
+    filtersApplies$: Observable<Action> = this.actions$.ofType(NomenclatorTypes.UPDATE_APPLIED_FILTERS)
+        .mergeMap(() => of(NomenclatorCreators.loadNomenclatorsRequest()));
 }

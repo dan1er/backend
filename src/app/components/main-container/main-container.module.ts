@@ -5,13 +5,16 @@ import {MaterialModule} from "../../material.module";
 import {RouterModule} from "@angular/router";
 import {MenuComponent} from "./components/menu/menu.component";
 import {LoaderModule} from "../../shared/modules/loader/loader.module";
+import {StoreModule} from "@ngrx/store";
+import {LayoutReducer} from "./redux";
 
 @NgModule({
     imports: [
         CommonModule,
         RouterModule,
         MaterialModule,
-        LoaderModule
+        LoaderModule,
+        StoreModule.forFeature("layout", LayoutReducer)
     ],
     declarations: [MainContainerComponent, MenuComponent]
 })

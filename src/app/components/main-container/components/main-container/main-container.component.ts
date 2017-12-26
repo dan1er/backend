@@ -2,6 +2,10 @@ import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, ActivatedRouteSnapshot, NavigationEnd, Router} from "@angular/router";
 import {Title} from "@angular/platform-browser";
 import {StoreService} from "../../../../shared/services/store.service";
+import {Store} from "@ngrx/store";
+import State from "../../../../shared/redux/state";
+import {LayoutCreators, LayoutSelectors} from "../../redux";
+import {Observable} from "rxjs/Observable";
 
 @Component({
     selector: "app-main-container",
@@ -9,12 +13,15 @@ import {StoreService} from "../../../../shared/services/store.service";
     styleUrls: ["./main-container.component.scss"]
 })
 export class MainContainerComponent implements OnInit {
+    public filtersVisible$: Observable<boolean>;
+    public filterActionVisible$: Observable<boolean>;
     public title: string;
 
     constructor(private router: Router,
                 private route: ActivatedRoute,
                 private titleService: Title,
-                private storeService: StoreService) {
+                private storeService: StoreService,
+                private store: Store<State>) {
     }
 
     public ngOnInit(): void {
@@ -28,6 +35,15 @@ export class MainContainerComponent implements OnInit {
                 this.titleService.setTitle(this.title);
             }
         });
+        /*todo: check if error persists when angular updated*/
+        setTimeout(() => {
+            this.filtersVisible$ = this.store.select(LayoutSelectors.filtersVisible);
+            this.filterActionVisible$ = this.store.select(LayoutSelectors.filterActionVisible);
+        });
+    }
+
+    public toggleFilters(): void {
+        this.store.dispatch(LayoutCreators.toggleFilters());
     }
 
     private getPageTitle(routeSnapshot: ActivatedRouteSnapshot) {

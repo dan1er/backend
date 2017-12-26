@@ -1,8 +1,10 @@
 @import "assets/theme";
+@import "assets/variables";
 
 body {
     padding: 0;
     margin: 0;
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif !important;
 }
 
 @-webkit-keyframes autofill {
@@ -40,4 +42,16 @@ input:-webkit-autofill {
 
 .edit-form {
     padding: 15px;
+}
+
+.filters-section {
+    padding: 10px 0;
+    h3 {
+        padding: 0;
+        letter-spacing: 1.1px;
+        margin: 0 0 6px;
+        color: $menu-color;
+        font-size: 14px;
+        font-weight: 400;
+    }
 }

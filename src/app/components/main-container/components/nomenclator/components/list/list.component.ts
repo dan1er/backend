@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from "@angular/core";
+import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from "@angular/core";
 import {Store} from "@ngrx/store";
 import State from "../../../../../../shared/redux/state";
 import {NomenclatorCreators, NomenclatorSelectors} from "../../redux";
@@ -8,13 +8,14 @@ import {Observable} from "rxjs/Observable";
 import Paging from "../../../../../../shared/model/paging.model";
 import Nomenclator from "../../../../../../shared/model/nomenclator";
 import {ConfirmDialogComponent} from "../../../../../../shared/modules/messages/components/confirm-dialog/confirm-dialog.component";
+import {LayoutCreators, LayoutSelectors} from "../../../../redux";
 
 @Component({
     selector: "app-list",
     templateUrl: "./list.component.html",
     styleUrls: ["./list.component.scss"]
 })
-export class ListComponent implements OnInit, AfterViewInit {
+export class ListComponent implements OnInit, AfterViewInit, OnDestroy {
     @ViewChild(MatPaginator) paginator: MatPaginator;
     public dataSource = new MatTableDataSource();
     public anySelected$: Observable<boolean>;
@@ -39,12 +40,18 @@ export class ListComponent implements OnInit, AfterViewInit {
         this.store.select(NomenclatorSelectors.nomenclators).subscribe(
             (nomenclators: Nomenclator[]) => this.dataSource.data = nomenclators);
         this.store.select(NomenclatorSelectors.selected).subscribe((nomenclator: Nomenclator) => this.selected = nomenclator);
+        this.store.select(LayoutSelectors.filtersVisible).subscribe((value: boolean) => this.navigateToFilters(value));
         this.anySelected$ = this.store.select(NomenclatorSelectors.anySelected);
         this.pageData$ = this.store.select(NomenclatorSelectors.pageData);
     }
 
     public ngAfterViewInit(): void {
         this.dataSource.paginator = this.paginator;
+        this.store.dispatch(LayoutCreators.toggleListActions(true));
+    }
+
+    public ngOnDestroy(): void {
+        this.store.dispatch(LayoutCreators.toggleListActions(false));
     }
 
     public columnSelected(selected: Nomenclator): void {
@@ -71,5 +78,11 @@ export class ListComponent implements OnInit, AfterViewInit {
     private loadNomenclators(): void {
         this.store.dispatch(NomenclatorCreators.loadNomenclatorsRequest());
         this.store.dispatch(NomenclatorCreators.select(null));
+    }
+
+    private navigateToFilters(value: boolean) {
+        if (value) {
+            this.router.navigate(["admin", "nomencladores", {outlets: {"right": ["filtros"]}}]);
+        }
     }
 }
