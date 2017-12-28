@@ -13,6 +13,7 @@ import {FormFieldModule} from "../../../../shared/modules/form-field/form-field.
 import {AgencyModule} from "../agency/agency.module";
 import {MessagesModule} from "../../../../shared/modules/messages/messages.module";
 import {FiltersComponent} from "./components/filters/filters.component";
+import {NomenclatorConstants} from "./nomenclator.constants";
 
 @NgModule({
     imports: [
@@ -32,7 +33,8 @@ import {FiltersComponent} from "./components/filters/filters.component";
         FiltersComponent
     ],
     providers: [
-        NomenclatorService
+        NomenclatorService,
+        NomenclatorConstants
     ]
 })
 export class NomenclatorModule {

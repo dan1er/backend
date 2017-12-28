@@ -9,7 +9,8 @@ const {Types: LayoutTypes, Creators: LayoutCreators} = createActions({
     toggleFiltersSection: null,
     add: null,
     edit: null,
-    remove: null
+    remove: null,
+    showMessage: ["message"]
 }, {prefix: "LAYOUT_"});
 
 export {LayoutTypes, LayoutCreators};

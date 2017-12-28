@@ -6,10 +6,12 @@ import {Store} from "@ngrx/store";
 import State from "../../../../shared/redux/state";
 import {LayoutCreators, LayoutSelectors} from "../../redux";
 import {Observable} from "rxjs/Observable";
-import {ILayoutState} from "../../redux/reducer";
+import {ILayoutState, INotification} from "../../redux/reducer";
 import {IRouteData} from "../../../../shared/model/route-data.model";
 import {TakeUntilDestroy} from "ngx-take-until-destroy";
 import {Subject} from "rxjs/Subject";
+import {MatSnackBar} from "@angular/material";
+import {notification} from "../../redux/selectors";
 
 @TakeUntilDestroy
 @Component({
@@ -26,7 +28,8 @@ export class MainContainerComponent implements OnInit, OnDestroy {
                 private route: ActivatedRoute,
                 private titleService: Title,
                 private storeService: StoreService,
-                private store: Store<State>) {
+                private store: Store<State>,
+                private snackBar: MatSnackBar) {
     }
 
     public ngOnInit(): void {
@@ -35,6 +38,7 @@ export class MainContainerComponent implements OnInit, OnDestroy {
         this.titleService.setTitle(this.title);
         this.activateLayoutFeatures(data);
 
+        this.layoutState$ = this.store.select(LayoutSelectors.layoutState);
         this.router.events
             .takeUntil(this.componentDestroyed$)
             .subscribe((event) => {
@@ -46,7 +50,16 @@ export class MainContainerComponent implements OnInit, OnDestroy {
 
                 }
             });
-        this.layoutState$ = this.store.select(LayoutSelectors.layoutState);
+        setTimeout(() => {
+            this.store
+                .select(notification)
+                .takeUntil(this.componentDestroyed$)
+                .subscribe((value: INotification) => {
+                    if (value && value.message) {
+                        this.notify(value.message);
+                    }
+                });
+        });
     }
 
     public ngOnDestroy(): void {
@@ -91,5 +104,9 @@ export class MainContainerComponent implements OnInit, OnDestroy {
         } else {
             this.store.dispatch(LayoutCreators.disableListActions());
         }
+    }
+
+    private notify(value: string): void {
+        this.snackBar.open(value, null, {duration: 4000});
     }
 }

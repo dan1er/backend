@@ -10,13 +10,16 @@ import {User} from "../../../../../shared/model/user.model";
 import {Router} from "@angular/router";
 import State from "../../../../../shared/redux/state";
 import {HttpResponse} from "@angular/common/http";
+import {LayoutCreators} from "../../../redux/index";
+import {UserConstants} from "../user.constants";
 
 @Injectable()
 export default class UserEffects {
     constructor(private actions$: Actions,
                 private userService: UserService,
                 private router: Router,
-                private store: Store<State>) {
+                private store: Store<State>,
+                private userConstants: UserConstants) {
     }
 
     @Effect()
@@ -47,6 +50,7 @@ export default class UserEffects {
             this.userService.create(action.record)
                 .switchMap((user: User) => [
                     UserCreators.createSuccess(user),
+                    LayoutCreators.showMessage(this.userConstants.CREATED_MESSAGE),
                     UserCreators.goToList(["admin", "usuarios"])
                 ])
                 .catch((error: Error) => of(UserCreators.createFailure(error.message)))
@@ -58,6 +62,7 @@ export default class UserEffects {
             this.userService.update(action.record)
                 .switchMap((user: User) => [
                     UserCreators.editSuccess(user),
+                    LayoutCreators.showMessage(this.userConstants.EDITED_MESSAGE),
                     UserCreators.goToList(["admin", "usuarios"])
                 ])
                 .catch((error: Error) => of(UserCreators.editFailure(error.message)))
@@ -68,7 +73,8 @@ export default class UserEffects {
         .mergeMap((action: any) =>
             this.userService.remove(action.username)
                 .switchMap((user: User) => [
-                    UserCreators.removeSuccess(user),
+                    UserCreators.removeSuccess(user), ,
+                    LayoutCreators.showMessage(this.userConstants.REMOVED_MESSAGE),
                     UserCreators.loadUsersRequest()
                 ])
                 .catch((error: Error) => of(UserCreators.removeFailure(error.message)))

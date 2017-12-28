@@ -11,16 +11,17 @@ import State from "../../../../../shared/redux/state";
 import {HttpResponse} from "@angular/common/http";
 import Nomenclator from "../../../../../shared/model/nomenclator";
 import {NomenclatorType} from "../../../../../shared/model/nomenclator-type.model";
-import {UserCreators} from "../../user/redux/actions";
-import {selected} from "../../user/redux/selectors";
-import {LayoutTypes} from "../../../redux";
+import {selected} from "../../nomenclator/redux/selectors";
+import {NomenclatorConstants} from "../nomenclator.constants";
+import {LayoutCreators} from "../../../redux";
 
 @Injectable()
 export default class NomenclatorEffects {
     constructor(private actions$: Actions,
                 private nomenclatorService: NomenclatorService,
                 private router: Router,
-                private store: Store<State>) {
+                private store: Store<State>,
+                private nomenclatorConstants: NomenclatorConstants) {
     }
 
     @Effect()
@@ -58,7 +59,8 @@ export default class NomenclatorEffects {
             this.nomenclatorService.create(action.record)
                 .switchMap((nomenclator: Nomenclator) => [
                     NomenclatorCreators.createSuccess(nomenclator),
-                    NomenclatorCreators.goToList(["admin", "nomencladores"])
+                    NomenclatorCreators.goToList(["admin", "nomencladores"]),
+                    LayoutCreators.showMessage(this.nomenclatorConstants.CREATED_MESSAGE)
                 ])
                 .catch((error: Error) => of(NomenclatorCreators.createFailure(error.message)))
         );
@@ -69,7 +71,8 @@ export default class NomenclatorEffects {
             this.nomenclatorService.update(action.record)
                 .switchMap((nomenclator: Nomenclator) => [
                     NomenclatorCreators.editSuccess(nomenclator),
-                    NomenclatorCreators.goToList(["admin", "nomencladores"])
+                    NomenclatorCreators.goToList(["admin", "nomencladores"]),
+                    LayoutCreators.showMessage(this.nomenclatorConstants.EDITED_MESSAGE)
                 ])
                 .catch((error: Error) => of(NomenclatorCreators.editFailure(error.message)))
         );
@@ -80,7 +83,8 @@ export default class NomenclatorEffects {
             this.nomenclatorService.remove(action.nomenclatorname)
                 .switchMap((nomenclator: Nomenclator) => [
                     NomenclatorCreators.removeSuccess(nomenclator),
-                    NomenclatorCreators.loadNomenclatorsRequest()
+                    NomenclatorCreators.loadNomenclatorsRequest(),
+                    LayoutCreators.showMessage(this.nomenclatorConstants.REMOVED_MESSAGE)
                 ])
                 .catch((error: Error) => of(NomenclatorCreators.removeFailure(error.message)))
         );
@@ -96,7 +100,7 @@ export default class NomenclatorEffects {
 
     @Effect()
     beforeCreate$: Observable<any> = this.actions$.ofType(NomenclatorTypes.ADD_COMMAND)
-        .mergeMap(() => [UserCreators.clearSelected()])
+        .mergeMap(() => [NomenclatorCreators.clearSelected()])
         .do(() => this.router.navigate(["admin", "nomencladores", "adicionar"]));
 
     @Effect({dispatch: false})

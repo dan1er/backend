@@ -2,12 +2,17 @@ import {createReducer} from "reduxsauce";
 import {LayoutTypes} from "./actions";
 import {LayoutItemStatus} from "../../../shared/model/layout-item-status.model";
 
+export interface INotification {
+    message: string;
+}
+
 export interface ILayoutState {
     add: LayoutItemStatus;
     edit: LayoutItemStatus;
     remove: LayoutItemStatus;
     filter: LayoutItemStatus;
     filtersSection: LayoutItemStatus;
+    notification?: INotification;
 }
 
 export const INITIAL_STATE: ILayoutState = {
@@ -100,6 +105,10 @@ export const deleteClick = (state = INITIAL_STATE) => {
     };
 };
 
+export const showMessage = (state = INITIAL_STATE, action: any) => {
+    return {...state, notification: {message: action.message}};
+};
+
 export const HANDLERS = {
     [LayoutTypes.INIT_LIST_ACTIONS]: initListActions,
     [LayoutTypes.INIT_LIST_ACTIONS_WITHOUT_FILTERING]: initListActionsWithoutFiltering,
@@ -108,7 +117,8 @@ export const HANDLERS = {
     [LayoutTypes.TOGGLE_FILTERS_SECTION]: toggleFiltersSection,
     [LayoutTypes.ADD]: addClick,
     [LayoutTypes.EDIT]: editClick,
-    [LayoutTypes.REMOVE]: deleteClick
+    [LayoutTypes.REMOVE]: deleteClick,
+    [LayoutTypes.SHOW_MESSAGE]: showMessage
 };
 
 export default createReducer(INITIAL_STATE, HANDLERS);

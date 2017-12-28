@@ -14,6 +14,7 @@ import {AgencyModule} from "../agency/agency.module";
 import {EmailValidatorDirective} from "./validators/email-validator.directive";
 import {UserNameValidatorDirective} from "./validators/user-name-validator.directive";
 import {MessagesModule} from "../../../../shared/modules/messages/messages.module";
+import {UserConstants} from "./user.constants";
 
 @NgModule({
     imports: [
@@ -34,7 +35,8 @@ import {MessagesModule} from "../../../../shared/modules/messages/messages.modul
         UserNameValidatorDirective
     ],
     providers: [
-        UserService
+        UserService,
+        UserConstants
     ]
 })
 export class UserModule {

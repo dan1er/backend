@@ -2,8 +2,8 @@ import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {
     MatButtonModule, MatCardModule, MatCheckboxModule, MatDialogModule, MatGridListModule, MatInputModule, MatListModule, MatMenuModule,
-    MatPaginatorModule, MatProgressBarModule, MatRadioModule, MatSelectModule, MatSidenavModule, MatSlideToggleModule, MatTableModule,
-    MatToolbarModule, MatTooltipModule
+    MatPaginatorModule, MatProgressBarModule, MatRadioModule, MatSelectModule, MatSidenavModule, MatSlideToggleModule, MatSnackBarModule,
+    MatTableModule, MatToolbarModule, MatTooltipModule
 } from "@angular/material";
 import {MatIconModule} from "@angular/material/icon";
 import {FlexLayoutModule} from "@angular/flex-layout";
@@ -33,7 +33,8 @@ import {CdkTableModule} from "@angular/cdk/table";
         MatSelectModule,
         MatDialogModule,
         MatProgressBarModule,
-        MatSlideToggleModule
+        MatSlideToggleModule,
+        MatSnackBarModule
     ],
     exports: [
         FormsModule,
@@ -56,7 +57,8 @@ import {CdkTableModule} from "@angular/cdk/table";
         MatSelectModule,
         MatDialogModule,
         MatProgressBarModule,
-        MatSlideToggleModule
+        MatSlideToggleModule,
+        MatSnackBarModule
     ]
 })
 export class MaterialModule {
