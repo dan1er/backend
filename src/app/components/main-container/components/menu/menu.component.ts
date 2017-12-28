@@ -71,7 +71,7 @@ export class MenuComponent {
             }
         ];
 
-        if (environment.production) {
+        if (!environment.production) {
             this.systemItems.push(
                 {
                     label: "Swagger",

@@ -1,5 +1,5 @@
 import {createReducer} from "reduxsauce";
-import {UserTypes} from "./user.actions";
+import {UserTypes} from "./actions";
 import {User} from "../../../../../shared/model/user.model";
 import Role from "../../../../../shared/model/role.model";
 import Paging from "../../../../../shared/model/paging.model";
@@ -59,6 +59,10 @@ export const updatePageData = (state = INITIAL_STATE, action: any) => {
     return {...state, pageData: action.data};
 };
 
+export const clearSelected = (state = INITIAL_STATE) => {
+    return {...state, selected: null};
+};
+
 export const HANDLERS = {
     [UserTypes.LOAD_USERS_REQUEST]: request,
     [UserTypes.LOAD_USERS_SUCCESS]: success,
@@ -66,7 +70,8 @@ export const HANDLERS = {
     [UserTypes.SELECT]: select,
     [UserTypes.LOAD_DATA_SUCCESS]: loadDataSuccess,
     [UserTypes.LOAD_DATA_FAILURE]: loadDataFailure,
-    [UserTypes.UPDATE_PAGE_DATA]: updatePageData
+    [UserTypes.UPDATE_PAGE_DATA]: updatePageData,
+    [UserTypes.CLEAR_SELECTED]: clearSelected
 };
 
 export default createReducer(INITIAL_STATE, HANDLERS);

@@ -8,7 +8,9 @@ const routes: Routes = [
         path: "",
         component: ListComponent,
         data: {
-            title: "Usuarios"
+            title: "Usuarios",
+            isListView: true,
+            isFilteringEnabled: false
         }
     },
     {

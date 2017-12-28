@@ -1,17 +1,14 @@
 import {Injectable} from "@angular/core";
 import {Actions, Effect} from "@ngrx/effects";
 import {UserService} from "../services/user.service";
-import "rxjs/add/operator/switchMap";
-import "rxjs/add/operator/catch";
 import {Observable} from "rxjs/Observable";
 import {Action, Store} from "@ngrx/store";
 import {of} from "rxjs/observable/of";
-import {UserCreators, UserTypes} from "./user.actions";
-import {pageData} from "./user.selectors";
+import {UserCreators, UserTypes} from "./actions";
+import {pageData, selected} from "./selectors";
 import {User} from "../../../../../shared/model/user.model";
 import {Router} from "@angular/router";
 import State from "../../../../../shared/redux/state";
-import "rxjs/add/operator/withLatestFrom";
 import {HttpResponse} from "@angular/common/http";
 
 @Injectable()
@@ -81,4 +78,14 @@ export default class UserEffects {
     goToList$: Observable<Action> = this.actions$.ofType(UserTypes.GO_TO_LIST)
         .map((action: any) => action.path)
         .do((path: string[]) => this.router.navigate(path));
+
+    @Effect()
+    beforeCreate$: Observable<any> = this.actions$.ofType(UserTypes.ADD_COMMAND)
+        .mergeMap(() => [UserCreators.clearSelected()])
+        .do(() => this.router.navigate(["admin", "usuarios", "adicionar"]));
+
+    @Effect({dispatch: false})
+    beforeEdit$: Observable<any> = this.actions$.ofType(UserTypes.EDIT_COMMAND)
+        .withLatestFrom(this.store.select(selected))
+        .do(([, selectedUser]) => this.router.navigate(["admin", "usuarios", "editar", selectedUser.login]));
 }

@@ -18,7 +18,10 @@ const {Types: UserTypes, Creators: UserCreators} = createActions({
     removeSuccess: null,
     removeFailure: null,
     goToList: ["path"],
-    updatePageData: ["data"]
+    updatePageData: ["data"],
+    clearSelected: null,
+    addCommand: null,
+    editCommand: null
 }, {prefix: "USER_"});
 
 export {UserTypes, UserCreators};

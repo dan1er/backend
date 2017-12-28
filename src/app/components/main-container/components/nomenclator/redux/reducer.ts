@@ -60,6 +60,10 @@ export const updateAppliedFilters = (state = INITIAL_STATE, action: any) => {
     return {...state, appliedFilters: action.filters};
 };
 
+export const clearSelected = (state = INITIAL_STATE) => {
+    return {...state, selected: null};
+};
+
 export const HANDLERS = {
     [NomenclatorTypes.LOAD_NOMENCLATORS_REQUEST]: request,
     [NomenclatorTypes.LOAD_NOMENCLATORS_SUCCESS]: success,
@@ -68,7 +72,8 @@ export const HANDLERS = {
     [NomenclatorTypes.LOAD_DATA_SUCCESS]: loadDataSuccess,
     [NomenclatorTypes.LOAD_DATA_FAILURE]: loadDataFailure,
     [NomenclatorTypes.UPDATE_PAGE_DATA]: updatePageData,
-    [NomenclatorTypes.UPDATE_APPLIED_FILTERS]: updateAppliedFilters
+    [NomenclatorTypes.UPDATE_APPLIED_FILTERS]: updateAppliedFilters,
+    [NomenclatorTypes.CLEAR_SELECTED]: clearSelected
 };
 
 export default createReducer(INITIAL_STATE, HANDLERS);

@@ -5,8 +5,6 @@ import {Action} from "@ngrx/store";
 import {LoginCreators, LoginTypes} from "./login.actions";
 import {LoginService} from "../services/login.service";
 import {of} from "rxjs/observable/of";
-import "rxjs/add/operator/switchMap";
-import "rxjs/add/operator/catch";
 import {Router} from "@angular/router";
 import {StoreService} from "../../../shared/services/store.service";
 

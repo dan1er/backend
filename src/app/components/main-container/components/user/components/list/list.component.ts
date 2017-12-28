@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from "@angular/core";
+import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from "@angular/core";
 import {Store} from "@ngrx/store";
 import State from "../../../../../../shared/redux/state";
 import {UserCreators, UserSelectors} from "../../redux";
@@ -8,14 +8,19 @@ import {Router} from "@angular/router";
 import {Observable} from "rxjs/Observable";
 import Paging from "../../../../../../shared/model/paging.model";
 import {ConfirmDialogComponent} from "../../../../../../shared/modules/messages/components/confirm-dialog/confirm-dialog.component";
+import {LayoutCreators, LayoutSelectors} from "../../../../redux";
+import {ILayoutState} from "../../../../redux/reducer";
+import {TakeUntilDestroy} from "ngx-take-until-destroy";
+import {Subject} from "rxjs/Subject";
 
+@TakeUntilDestroy
 @Component({
     selector: "app-list",
-    templateUrl: "./list.component.html",
-    styleUrls: ["./list.component.scss"]
+    templateUrl: "./list.component.html"
 })
-export class ListComponent implements OnInit, AfterViewInit {
+export class ListComponent implements OnInit, AfterViewInit, OnDestroy {
     @ViewChild(MatPaginator) paginator: MatPaginator;
+    public componentDestroyed$: Subject<boolean>;
     public dataSource = new MatTableDataSource();
     public anySelected$: Observable<boolean>;
     public selected: User;
@@ -40,24 +45,53 @@ export class ListComponent implements OnInit, AfterViewInit {
     public ngOnInit(): void {
         this.loadUsers();
 
-        this.store.select(UserSelectors.users).subscribe((users: User[]) => this.dataSource.data = users);
-        this.store.select(UserSelectors.selected).subscribe((user: User) => this.selected = user);
         this.anySelected$ = this.store.select(UserSelectors.anySelected);
         this.pageData$ = this.store.select(UserSelectors.pageData);
+        this.store.select(UserSelectors.users)
+            .takeUntil(this.componentDestroyed$)
+            .subscribe((users: User[]) => this.dataSource.data = users);
+        this.store.select(UserSelectors.selected)
+            .takeUntil(this.componentDestroyed$)
+            .subscribe((user: User) => this.selected = user);
+
+        this.store.select(LayoutSelectors.layoutState)
+            .takeUntil(this.componentDestroyed$)
+            .subscribe((state: ILayoutState) => {
+                if (state.add.active) {
+                    this.onAddClick();
+                } else if (state.edit.active) {
+                    this.onEditClick();
+                } else if (state.remove.active) {
+                    this.onDeleteClick();
+                }
+            });
     }
 
     public ngAfterViewInit(): void {
-        this.paginator.page.subscribe((data: any) => {
-            const pageData = new Paging(data);
-            this.store.dispatch(UserCreators.updatePageData(pageData));
-            this.loadUsers();
-        });
+        this.paginator.page
+            .takeUntil(this.componentDestroyed$)
+            .subscribe((data: any) => {
+                const pageData = new Paging(data);
+                this.store.dispatch(UserCreators.updatePageData(pageData));
+                this.loadUsers();
+            });
+    }
+
+    public ngOnDestroy(): void {
+        // empty for autounsubscribe on aot
     }
 
     public columnSelected(selected: User): void {
-        this.store.dispatch(
-            UserCreators.select(selected)
-        );
+        this.store.dispatch(UserCreators.select(selected));
+        this.store.dispatch(LayoutCreators.enableListActionsForSelected());
+    }
+
+    public onAddClick(): void {
+        this.store.dispatch(UserCreators.addCommand());
+    }
+
+    public onEditClick(): void {
+        this.store.dispatch(UserCreators.editCommand());
     }
 
     public onDeleteClick(): void {

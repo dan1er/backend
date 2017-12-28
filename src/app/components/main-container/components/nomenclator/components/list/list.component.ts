@@ -9,14 +9,18 @@ import Paging from "../../../../../../shared/model/paging.model";
 import Nomenclator from "../../../../../../shared/model/nomenclator";
 import {ConfirmDialogComponent} from "../../../../../../shared/modules/messages/components/confirm-dialog/confirm-dialog.component";
 import {LayoutCreators, LayoutSelectors} from "../../../../redux";
+import {ILayoutState} from "../../../../redux/reducer";
+import {TakeUntilDestroy} from "ngx-take-until-destroy";
+import {Subject} from "rxjs/Subject";
 
+@TakeUntilDestroy
 @Component({
     selector: "app-list",
-    templateUrl: "./list.component.html",
-    styleUrls: ["./list.component.scss"]
+    templateUrl: "./list.component.html"
 })
 export class ListComponent implements OnInit, AfterViewInit, OnDestroy {
     @ViewChild(MatPaginator) paginator: MatPaginator;
+    public componentDestroyed$: Subject<boolean>;
     public dataSource = new MatTableDataSource();
     public anySelected$: Observable<boolean>;
     public selected: Nomenclator;
@@ -37,27 +41,50 @@ export class ListComponent implements OnInit, AfterViewInit, OnDestroy {
     public ngOnInit(): void {
         this.loadNomenclators();
 
-        this.store.select(NomenclatorSelectors.nomenclators).subscribe(
-            (nomenclators: Nomenclator[]) => this.dataSource.data = nomenclators);
-        this.store.select(NomenclatorSelectors.selected).subscribe((nomenclator: Nomenclator) => this.selected = nomenclator);
-        this.store.select(LayoutSelectors.filtersVisible).subscribe((value: boolean) => this.navigateToFilters(value));
         this.anySelected$ = this.store.select(NomenclatorSelectors.anySelected);
         this.pageData$ = this.store.select(NomenclatorSelectors.pageData);
+        this.store.select(NomenclatorSelectors.nomenclators)
+            .takeUntil(this.componentDestroyed$)
+            .subscribe(
+                (nomenclators: Nomenclator[]) => this.dataSource.data = nomenclators);
+        this.store.select(NomenclatorSelectors.selected)
+            .takeUntil(this.componentDestroyed$)
+            .subscribe((nomenclator: Nomenclator) => this.selected = nomenclator);
+        this.store.select(LayoutSelectors.filtersVisible)
+            .takeUntil(this.componentDestroyed$)
+            .subscribe((value: boolean) => this.navigateToFilters(value));
+        this.store.select(LayoutSelectors.layoutState)
+            .takeUntil(this.componentDestroyed$)
+            .subscribe((state: ILayoutState) => {
+                if (state.add.active) {
+                    this.onAddClick();
+                } else if (state.edit.active) {
+                    this.onEditClick();
+                } else if (state.remove.active) {
+                    this.onDeleteClick();
+                }
+            });
+    }
+
+    public ngOnDestroy(): void {
+        // empty for autounsubscribe on aot
     }
 
     public ngAfterViewInit(): void {
         this.dataSource.paginator = this.paginator;
-        this.store.dispatch(LayoutCreators.toggleListActions(true));
     }
 
-    public ngOnDestroy(): void {
-        this.store.dispatch(LayoutCreators.toggleListActions(false));
+    public onAddClick(): void {
+        this.store.dispatch(NomenclatorCreators.addCommand());
+    }
+
+    public onEditClick(): void {
+        this.store.dispatch(NomenclatorCreators.editCommand());
     }
 
     public columnSelected(selected: Nomenclator): void {
-        this.store.dispatch(
-            NomenclatorCreators.select(selected)
-        );
+        this.store.dispatch(NomenclatorCreators.select(selected));
+        this.store.dispatch(LayoutCreators.enableListActionsForSelected());
     }
 
     public onDeleteClick(): void {

@@ -1,8 +1,15 @@
 import {createActions} from "reduxsauce";
 
 const {Types: LayoutTypes, Creators: LayoutCreators} = createActions({
-    toggleFilters: null,
-    toggleListActions: ["value"]
+    initListActions: null,
+    initListActionsWithoutFiltering: null,
+    enableListActionsForSelected: null,
+    disableListActions: null,
+    updateListActionsStatus: ["status"],
+    toggleFiltersSection: null,
+    add: null,
+    edit: null,
+    remove: null
 }, {prefix: "LAYOUT_"});
 
 export {LayoutTypes, LayoutCreators};

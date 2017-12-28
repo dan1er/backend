@@ -1,9 +1,6 @@
 import {Directive, forwardRef, Input} from "@angular/core";
 import {AbstractControl, NG_ASYNC_VALIDATORS, Validator} from "@angular/forms";
-import "rxjs/add/operator/first";
-import "rxjs/add/operator/map";
 import {Observable} from "rxjs/Observable";
-import "rxjs/add/observable/of";
 
 @Directive({
     selector: "[passwordValidator][formControlName], [passwordValidator][ngModel]",

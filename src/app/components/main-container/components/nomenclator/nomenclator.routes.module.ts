@@ -9,7 +9,9 @@ const routes: Routes = [
         path: "",
         component: ListComponent,
         data: {
-            title: "Nomencladores"
+            title: "Nomencladores",
+            isListView: true,
+            isFilteringEnabled: true
         }
     },
     {

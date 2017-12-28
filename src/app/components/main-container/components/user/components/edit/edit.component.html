@@ -1,127 +1,132 @@
-<form autocomplete="off"
-      class="edit-form"
-      #editForm="ngForm"
-      (submit)="submit()">
-    <div fxLayout="row wrap"
-         fxLayoutGap="10px">
-        <app-form-field [required]="true"
-                        name="firstName"
-                        placeholder="Nombre"
-                        fxFlex="24"
-                        [(ngModel)]="user.firstName">
-        </app-form-field>
+<mat-card>
+    <mat-card-content>
+        <form autocomplete="off"
+              class="edit-form"
+              #editForm="ngForm"
+              (submit)="submit()">
+            <div fxLayout="row wrap"
+                 fxLayoutGap="10px">
+                <app-form-field [required]="true"
+                                name="firstName"
+                                placeholder="Nombre"
+                                fxFlex="24"
+                                [(ngModel)]="user.firstName">
+                </app-form-field>
 
-        <app-form-field [required]="true"
-                        name="lastName"
-                        placeholder="Apellidos"
-                        fxFlex="24"
-                        [(ngModel)]="user.lastName">
-        </app-form-field>
+                <app-form-field [required]="true"
+                                name="lastName"
+                                placeholder="Apellidos"
+                                fxFlex="24"
+                                [(ngModel)]="user.lastName">
+                </app-form-field>
 
-        <mat-form-field
-            fxFlex="24">
-            <input matInput
-                   type="text"
-                   name="login"
-                   placeholder="Usuario"
-                   #login="ngModel"
-                   [required]="true"
-                   [readonly]="!!user.id"
-                   [userNameValidator]="originalUsername"
-                   [(ngModel)]="user.login">
-            <mat-error *ngIf="login.hasError('required')">
-                {{sharedConstants.FIELD_REQUIRED_MESSAGE}}
-            </mat-error>
-            <mat-error *ngIf="login.hasError('userNameInUse')">
-                {{sharedConstants.USER_NAME_IN_USE_MESSAGE}}
-            </mat-error>
-        </mat-form-field>
+                <mat-form-field
+                    fxFlex="24">
+                    <input matInput
+                           type="text"
+                           name="login"
+                           placeholder="Usuario"
+                           #login="ngModel"
+                           [required]="true"
+                           [readonly]="!!user.id"
+                           [userNameValidator]="originalUsername"
+                           [(ngModel)]="user.login">
+                    <mat-error *ngIf="login.hasError('required')">
+                        {{sharedConstants.FIELD_REQUIRED_MESSAGE}}
+                    </mat-error>
+                    <mat-error *ngIf="login.hasError('userNameInUse')">
+                        {{sharedConstants.USER_NAME_IN_USE_MESSAGE}}
+                    </mat-error>
+                </mat-form-field>
 
-        <mat-form-field
-            fxFlex="24">
-            <input matInput
-                   type="email"
-                   name="email"
-                   email
-                   #email="ngModel"
-                   placeholder="Email"
-                   [required]="true"
-                   [emailValidator]="originalEmail"
-                   [(ngModel)]="user.email">
-            <mat-error *ngIf="email.hasError('required')">
-                {{sharedConstants.FIELD_REQUIRED_MESSAGE}}
-            </mat-error>
-            <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
-                {{sharedConstants.FIELD_EMAIL_MESSAGE}}
-            </mat-error>
-            <mat-error *ngIf="email.hasError('emailInUse')">
-                {{sharedConstants.EMAIL_IN_USE_MESSAGE}}
-            </mat-error>
-        </mat-form-field>
+                <mat-form-field
+                    fxFlex="24">
+                    <input matInput
+                           type="email"
+                           name="email"
+                           email
+                           #email="ngModel"
+                           placeholder="Email"
+                           [required]="true"
+                           [emailValidator]="originalEmail"
+                           [(ngModel)]="user.email">
+                    <mat-error *ngIf="email.hasError('required')">
+                        {{sharedConstants.FIELD_REQUIRED_MESSAGE}}
+                    </mat-error>
+                    <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+                        {{sharedConstants.FIELD_EMAIL_MESSAGE}}
+                    </mat-error>
+                    <mat-error *ngIf="email.hasError('emailInUse')">
+                        {{sharedConstants.EMAIL_IN_USE_MESSAGE}}
+                    </mat-error>
+                </mat-form-field>
 
-        <app-form-field [required]="true"
-                        name="password"
-                        placeholder="Contrase&ntilde;a"
-                        fxFlex="24"
-                        type="password"
-                        *ngIf="!user.id"
-                        [(ngModel)]="user.password">
-        </app-form-field>
+                <app-form-field [required]="true"
+                                name="password"
+                                placeholder="Contrase&ntilde;a"
+                                fxFlex="24"
+                                type="password"
+                                *ngIf="!user.id"
+                                [(ngModel)]="user.password">
+                </app-form-field>
 
-        <app-form-field [required]="true"
-                        name="confirmPassword"
-                        placeholder="Confirmar Contrase&ntilde;a"
-                        fxFlex="24"
-                        type="password"
-                        *ngIf="!user.id"
-                        [matchValue]="user.password"
-                        [(ngModel)]="user.confirmPassword">
-        </app-form-field>
+                <app-form-field [required]="true"
+                                name="confirmPassword"
+                                placeholder="Confirmar Contrase&ntilde;a"
+                                fxFlex="24"
+                                type="password"
+                                *ngIf="!user.id"
+                                [matchValue]="user.password"
+                                [(ngModel)]="user.confirmPassword">
+                </app-form-field>
 
-        <mat-form-field
-            fxFlex="24">
-            <mat-select name="agency"
-                        placeholder="Agencia"
-                        #agency="ngModel"
-                        required
-                        [(ngModel)]="user.agency.id">
-                <mat-option *ngFor="let item of agencies$|async"
-                            [value]="item.id">
-                    {{ item.name }}
-                </mat-option>
-            </mat-select>
-            <mat-error *ngIf="agency.hasError('required')">
-                Este campo es obligatorio
-            </mat-error>
-        </mat-form-field>
+                <mat-form-field
+                    fxFlex="24">
+                    <mat-select name="agency"
+                                placeholder="Agencia"
+                                #agency="ngModel"
+                                required
+                                [(ngModel)]="user.agency.id">
+                        <mat-option *ngFor="let item of agencies$|async"
+                                    [value]="item.id">
+                            {{ item.name }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="agency.hasError('required')">
+                        Este campo es obligatorio
+                    </mat-error>
+                </mat-form-field>
 
-        <mat-form-field
-            fxFlex="24">
-            <mat-select name="role"
-                        placeholder="Rol"
-                        multiple
-                        #role="ngModel"
-                        required
-                        [(ngModel)]="user.authorities">
-                <mat-option *ngFor="let item of roles$|async"
-                            [value]="item.value">
-                    {{ item.name }}
-                </mat-option>
-            </mat-select>
-            <mat-error *ngIf="role.hasError('required')">
-                Este campo es obligatorio
-            </mat-error>
-        </mat-form-field>
-    </div>
-    <div fxLayout="row wrap"
-         fxLayoutGap="5px"
-         fxLayoutAlign="end end">
-        <button mat-raised-button
-                color="primary"
-                type="submit"
-                [disabled]="editForm.form.invalid">
-            <mat-icon>save</mat-icon>
-            Guardar
-        </button>
-    </div>
-</form>
+                <mat-form-field
+                    fxFlex="24">
+                    <mat-select name="role"
+                                placeholder="Rol"
+                                multiple
+                                #role="ngModel"
+                                required
+                                [(ngModel)]="user.authorities">
+                        <mat-option *ngFor="let item of roles$|async"
+                                    [value]="item.value">
+                            {{ item.name }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="role.hasError('required')">
+                        Este campo es obligatorio
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div fxLayout="row wrap"
+                 fxLayoutGap="5px"
+                 fxLayoutAlign="end end">
+                <button mat-raised-button
+                        color="primary"
+                        type="submit"
+                        [disabled]="editForm.form.invalid">
+                    <mat-icon>save</mat-icon>
+                    Guardar
+                </button>
+            </div>
+        </form>
+
+    </mat-card-content>
+</mat-card>

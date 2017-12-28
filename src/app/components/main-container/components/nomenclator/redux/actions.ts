@@ -19,7 +19,10 @@ const {Types: NomenclatorTypes, Creators: NomenclatorCreators} = createActions({
     removeFailure: null,
     goToList: ["path"],
     updatePageData: ["data"],
-    updateAppliedFilters: ["filters"]
+    updateAppliedFilters: ["filters"],
+    clearSelected: null,
+    addCommand: null,
+    editCommand: null
 }, {prefix: "NOMENCLATOR_"});
 
 export {NomenclatorTypes, NomenclatorCreators};

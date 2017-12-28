@@ -1,8 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Actions, Effect} from "@ngrx/effects";
 import {NomenclatorService} from "../services/nomenclator.service";
-import "rxjs/add/operator/switchMap";
-import "rxjs/add/operator/catch";
 import {Observable} from "rxjs/Observable";
 import {Action, Store} from "@ngrx/store";
 import {of} from "rxjs/observable/of";
@@ -10,10 +8,12 @@ import {NomenclatorCreators, NomenclatorTypes} from "./actions";
 import {filters, pageData} from "./selectors";
 import {Router} from "@angular/router";
 import State from "../../../../../shared/redux/state";
-import "rxjs/add/operator/withLatestFrom";
 import {HttpResponse} from "@angular/common/http";
 import Nomenclator from "../../../../../shared/model/nomenclator";
 import {NomenclatorType} from "../../../../../shared/model/nomenclator-type.model";
+import {UserCreators} from "../../user/redux/actions";
+import {selected} from "../../user/redux/selectors";
+import {LayoutTypes} from "../../../redux";
 
 @Injectable()
 export default class NomenclatorEffects {
@@ -93,4 +93,14 @@ export default class NomenclatorEffects {
     @Effect()
     filtersApplies$: Observable<Action> = this.actions$.ofType(NomenclatorTypes.UPDATE_APPLIED_FILTERS)
         .mergeMap(() => of(NomenclatorCreators.loadNomenclatorsRequest()));
+
+    @Effect()
+    beforeCreate$: Observable<any> = this.actions$.ofType(NomenclatorTypes.ADD_COMMAND)
+        .mergeMap(() => [UserCreators.clearSelected()])
+        .do(() => this.router.navigate(["admin", "nomencladores", "adicionar"]));
+
+    @Effect({dispatch: false})
+    beforeEdit$: Observable<any> = this.actions$.ofType(NomenclatorTypes.EDIT_COMMAND)
+        .withLatestFrom(this.store.select(selected))
+        .do(([, selectedNomenclator]) => this.router.navigate(["admin", "nomencladores", "editar", selectedNomenclator.id]));
 }

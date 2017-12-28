@@ -10,8 +10,26 @@
             <div class="spacer"></div>
 
             <button mat-icon-button
-                    *ngIf="filterActionVisible$|async"
-                    (click)="toggleFilters()">
+                    *ngIf="(layoutState$|async)?.add?.visible"
+                    (click)="onAddClick()">
+                <mat-icon>add</mat-icon>
+            </button>
+
+            <button mat-icon-button
+                    *ngIf="(layoutState$|async)?.edit?.visible"
+                    (click)="onEditClick()">
+                <mat-icon>mode_edit</mat-icon>
+            </button>
+
+            <button mat-icon-button
+                    *ngIf="(layoutState$|async)?.remove?.visible"
+                    (click)="onDeleteClick()">
+                <mat-icon>delete</mat-icon>
+            </button>
+
+            <button mat-icon-button
+                    *ngIf="(layoutState$|async)?.filter?.visible"
+                    (click)="toggleFiltersSection()">
                 <mat-icon>filter_list</mat-icon>
             </button>
 
@@ -35,16 +53,12 @@
         </mat-drawer>
 
         <mat-drawer-content>
-            <mat-card>
-                <mat-card-content>
-                    <router-outlet></router-outlet>
-                </mat-card-content>
-            </mat-card>
+            <router-outlet></router-outlet>
         </mat-drawer-content>
 
         <mat-drawer mode="side"
                     position="end"
-                    [opened]="filtersVisible$|async">
+                    [opened]="(layoutState$|async)?.filtersSection?.visible">
             <router-outlet name="right"></router-outlet>
         </mat-drawer>
     </mat-drawer-container>

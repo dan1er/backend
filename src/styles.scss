@@ -55,3 +55,16 @@ input:-webkit-autofill {
         font-weight: 400;
     }
 }
+
+.list-container {
+    position: relative;
+    min-height: calc(100% - 25px);
+
+    & > .mat-card {
+        padding: 0;
+    }
+}
+
+.no-padding {
+    padding: 0 !important;
+}

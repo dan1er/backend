@@ -7,6 +7,8 @@ import {MenuComponent} from "./components/menu/menu.component";
 import {LoaderModule} from "../../shared/modules/loader/loader.module";
 import {StoreModule} from "@ngrx/store";
 import {LayoutReducer} from "./redux";
+import {EffectsModule} from "@ngrx/effects";
+import LayoutEffects from "./redux/effects";
 
 @NgModule({
     imports: [
@@ -14,7 +16,8 @@ import {LayoutReducer} from "./redux";
         RouterModule,
         MaterialModule,
         LoaderModule,
-        StoreModule.forFeature("layout", LayoutReducer)
+        StoreModule.forFeature("layout", LayoutReducer),
+        EffectsModule.forFeature([LayoutEffects])
     ],
     declarations: [MainContainerComponent, MenuComponent]
 })
