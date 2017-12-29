@@ -63,41 +63,4 @@ export default class VariableEffects {
                 ])
                 .catch((error: Error) => of(VariableCreators.createFailure(error.message)))
         );
-
-    /*@Effect()
-
-
-    @Effect()
-    update$: Observable<Action> = this.actions$.ofType(VariableTypes.EDIT)
-        .mergeMap((action: any) =>
-            this.variableService.update(action.record)
-                .switchMap((variable: Variable) => [
-                    VariableCreators.editSuccess(variable),
-                    VariableCreators.goToList(["admin", "nomencladores"]),
-                    LayoutCreators.showMessage(this.variableConstants.EDITED_MESSAGE)
-                ])
-                .catch((error: Error) => of(VariableCreators.editFailure(error.message)))
-        );
-
-    @Effect()
-    remove$: Observable<Action> = this.actions$.ofType(VariableTypes.REMOVE)
-        .mergeMap((action: any) =>
-            this.variableService.remove(action.variablename)
-                .switchMap((variable: Variable) => [
-                    VariableCreators.removeSuccess(variable),
-                    VariableCreators.loadVariablesRequest(),
-                    LayoutCreators.showMessage(this.variableConstants.REMOVED_MESSAGE)
-                ])
-                .catch((error: Error) => of(VariableCreators.removeFailure(error.message)))
-        );
-
-    @Effect({dispatch: false})
-    goToList$: Observable<Action> = this.actions$.ofType(VariableTypes.GO_TO_LIST)
-        .map((action: any) => action.path)
-        .do((path: string[]) => this.router.navigate(path));
-
-    @Effect()
-    loadHistoricData$: Observable<Action> = this.actions$.ofType(VariableTypes.GO_TO_LIST)
-        .map((action: any) => action.path)
-        .do((path: string[]) => this.router.navigate(path));*/
 }
