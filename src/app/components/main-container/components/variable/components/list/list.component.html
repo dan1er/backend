@@ -1,1 +1,18 @@
-Variable!
+<div fxLayoutAlign="end start"
+     class="view-action">
+    <mat-form-field>
+        <mat-select name="role"
+                    [(value)]="selectedVariable"
+                    [compareWith]="compareFn"
+                    (change)="onChange()">
+            <mat-option *ngFor="let item of variables$|async"
+                        [value]="item">
+                {{ item.description }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+
+<app-current [variable]="selectedVariable" (variableUpdate)="variableUpdate($event)"></app-current>
+
+<app-history [data]="historicData$|async"></app-history>

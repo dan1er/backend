@@ -1,0 +1,44 @@
+<h1 class="sub-header">Valor actual</h1>
+
+<mat-card>
+    <mat-card-content>
+        <form autocomplete="off"
+              #editForm="ngForm"
+              (submit)="variableUpdate.emit(variable)"
+              *ngIf="!!variable">
+            <div fxLayout="row wrap"
+                 fxLayoutGap="10px">
+                <mat-form-field fxFlex="49">
+                    <input matInput
+                           [min]="today"
+                           name="date"
+                           [(ngModel)]="variable.date"
+                           [matDatepicker]="picker"
+                           placeholder="Fecha">
+                    <mat-datepicker-toggle matSuffix
+                                           [for]="picker">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+
+                <app-form-field [required]="true"
+                                name="value"
+                                placeholder="Valor"
+                                [(ngModel)]="variable.value"
+                                fxFlex="49">
+                </app-form-field>
+            </div>
+            <div fxLayout="row wrap"
+                 fxLayoutGap="5px"
+                 fxLayoutAlign="end end">
+                <button mat-raised-button
+                        color="primary"
+                        type="submit"
+                        [disabled]="editForm.form.invalid">
+                    <mat-icon>save</mat-icon>
+                    Actualizar
+                </button>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

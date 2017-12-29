@@ -1,9 +1,9 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {
-    MatButtonModule, MatCardModule, MatCheckboxModule, MatDialogModule, MatGridListModule, MatInputModule, MatListModule, MatMenuModule,
-    MatPaginatorModule, MatProgressBarModule, MatRadioModule, MatSelectModule, MatSidenavModule, MatSlideToggleModule, MatSnackBarModule,
-    MatTableModule, MatToolbarModule, MatTooltipModule
+    MAT_DATE_LOCALE, MatButtonModule, MatCardModule, MatCheckboxModule, MatDatepickerModule, MatDialogModule, MatGridListModule,
+    MatInputModule, MatListModule, MatMenuModule, MatNativeDateModule, MatPaginatorModule, MatProgressBarModule, MatRadioModule,
+    MatSelectModule, MatSidenavModule, MatSlideToggleModule, MatSnackBarModule, MatTableModule, MatToolbarModule, MatTooltipModule
 } from "@angular/material";
 import {MatIconModule} from "@angular/material/icon";
 import {FlexLayoutModule} from "@angular/flex-layout";
@@ -34,7 +34,9 @@ import {CdkTableModule} from "@angular/cdk/table";
         MatDialogModule,
         MatProgressBarModule,
         MatSlideToggleModule,
-        MatSnackBarModule
+        MatSnackBarModule,
+        MatDatepickerModule,
+        MatNativeDateModule
     ],
     exports: [
         FormsModule,
@@ -58,7 +60,12 @@ import {CdkTableModule} from "@angular/cdk/table";
         MatDialogModule,
         MatProgressBarModule,
         MatSlideToggleModule,
-        MatSnackBarModule
+        MatSnackBarModule,
+        MatDatepickerModule,
+        MatNativeDateModule
+    ],
+    providers: [
+        {provide: MAT_DATE_LOCALE, useValue: "es-UY"}
     ]
 })
 export class MaterialModule {

@@ -5,4 +5,5 @@ export class Variable {
     date: Date = new Date();
     type: VariableType;
     value: number;
+    description?: string;
 }
