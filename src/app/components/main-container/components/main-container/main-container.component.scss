@@ -8,6 +8,12 @@ $toolbar-height: 50px;
         box-shadow: 0 3px 14px $shadow-color;
         position: relative;
         z-index: 2;
+
+        .logo {
+            width: 171px;
+            height: 48px;
+            background: url("../../../../../assets/images/logo.png");
+        }
     }
 
     mat-drawer-container {
