@@ -10,7 +10,7 @@ import {User} from "../../../../../shared/model/user.model";
 import {Router} from "@angular/router";
 import State from "../../../../../shared/redux/state";
 import {HttpResponse} from "@angular/common/http";
-import {LayoutCreators} from "../../../redux/index";
+import {LayoutCreators} from "../../../redux";
 import {UserConstants} from "../user.constants";
 
 @Injectable()
@@ -73,7 +73,7 @@ export default class UserEffects {
         .mergeMap((action: any) =>
             this.userService.remove(action.username)
                 .switchMap((user: User) => [
-                    UserCreators.removeSuccess(user), ,
+                    UserCreators.removeSuccess(user),
                     LayoutCreators.showMessage(this.userConstants.REMOVED_MESSAGE),
                     UserCreators.loadUsersRequest()
                 ])

@@ -22,7 +22,19 @@ const {Types: NomenclatorTypes, Creators: NomenclatorCreators} = createActions({
     updateAppliedFilters: ["filters"],
     clearSelected: null,
     addCommand: null,
-    editCommand: null
+    editCommand: null,
+    loadBanks: null,
+    loadBanksSuccess: ["banks"],
+    loadBanksFailure: null,
+    loadDepartments: null,
+    loadDepartmentsSuccess: ["departments"],
+    loadDepartmentsFailure: null,
+    loadAccountTypes: null,
+    loadAccountTypesSuccess: ["accountTypes"],
+    loadAccountTypesFailure: null,
+    loadPolicyCompanies: null,
+    loadPolicyCompaniesSuccess: ["companies"],
+    loadPolicyCompaniesFailure: null
 }, {prefix: "NOMENCLATOR_"});
 
 export {NomenclatorTypes, NomenclatorCreators};

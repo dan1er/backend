@@ -1,0 +1,283 @@
+<mat-card>
+    <mat-card-content>
+        <form autocomplete="off"
+              class="edit-form"
+              #editForm="ngForm"
+              (submit)="submit()">
+            <div fxLayout="row wrap">
+                <app-form-field fxFlex="25"
+                                [required]="true"
+                                name="code"
+                                type="number"
+                                placeholder="N&uacute;mero"
+                                [(ngModel)]="agency.number">
+                </app-form-field>
+
+                <app-form-field fxFlex="25"
+                                [required]="true"
+                                name="policyNumber"
+                                placeholder="N&uacute;mero de P&oacute;liza"
+                                [(ngModel)]="agency.policyNumber">
+                </app-form-field>
+
+                <app-form-field fxFlex="25"
+                                [required]="true"
+                                name="codeUTE"
+                                placeholder="Sug Asociado UTE"
+                                [(ngModel)]="agency.codeUTE">
+                </app-form-field>
+
+                <mat-form-field fxFlex="25">
+                    <input matInput
+                           name="policyEndDate"
+                           [(ngModel)]="agency.policyEndDate"
+                           [matDatepicker]="policyEndDatePicker"
+                           placeholder="Fin de Vigencia">
+                    <mat-datepicker-toggle matSuffix
+                                           [for]="policyEndDatePicker">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #policyEndDatePicker></mat-datepicker>
+                </mat-form-field>
+
+                <app-form-field fxFlex="25"
+                                [required]="true"
+                                name="name"
+                                placeholder="Nombre"
+                                [(ngModel)]="agency.name">
+                </app-form-field>
+
+                <mat-form-field
+                    fxFlex="25">
+                    <mat-select name="policyCompanyId"
+                                placeholder="Compa&ntilde;&iacute;a Aseguradora"
+                                #policyCompanyId="ngModel"
+                                required
+                                [(ngModel)]="agency.policyCompany">
+                        <mat-option *ngFor="let item of policyCompanies$|async"
+                                    [value]="item.id">
+                            {{ item.description }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="policyCompanyId.hasError('required')">
+                        Este campo es obligatorio
+                    </mat-error>
+                </mat-form-field>
+
+                <app-form-field fxFlex="25"
+                                [required]="true"
+                                name="rut"
+                                placeholder="RUT"
+                                [(ngModel)]="agency.rut">
+                </app-form-field>
+
+                <app-form-field fxFlex="25"
+                                name="comments"
+                                placeholder="Caracter&iacute;sticas"
+                                [(ngModel)]="agency.comments">
+                </app-form-field>
+
+                <app-form-field fxFlex="25"
+                                [required]="true"
+                                name="businessName"
+                                placeholder="Raz&oacute;n Social"
+                                [(ngModel)]="agency.businessName">
+                </app-form-field>
+
+                <mat-form-field
+                    fxFlex="25">
+                    <mat-select name="accountTypeId"
+                                placeholder="Tipo de cuenta"
+                                #accountTypeId="ngModel"
+                                required
+                                [(ngModel)]="agency.bankInfo.accountType">
+                        <mat-option *ngFor="let item of accountTypes$|async"
+                                    [value]="item">
+                            {{ item.description }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="accountTypeId.hasError('required')">
+                        Este campo es obligatorio
+                    </mat-error>
+                </mat-form-field>
+
+                <app-form-field fxFlex="25"
+                                [required]="true"
+                                name="contactName"
+                                placeholder="Contacto"
+                                [(ngModel)]="agency.contactName">
+                </app-form-field>
+
+                <mat-form-field
+                    fxFlex="25">
+                    <mat-select name="bank"
+                                placeholder="Banco"
+                                #bank="ngModel"
+                                required
+                                [(ngModel)]="agency.bankInfo.bank">
+                        <mat-option *ngFor="let item of banks$|async"
+                                    [value]="item.id">
+                            {{ item.description }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="bank.hasError('required')">
+                        Este campo es obligatorio
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field
+                    fxFlex="25">
+                    <mat-select name="department"
+                                placeholder="Departamento"
+                                #department="ngModel"
+                                required
+                                [(ngModel)]="agency.department">
+                        <mat-option *ngFor="let item of departments$|async"
+                                    [value]="item.id">
+                            {{ item.description }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="department.hasError('required')">
+                        Este campo es obligatorio
+                    </mat-error>
+                </mat-form-field>
+
+                <app-form-field fxFlex="25"
+                                name="accountUsd"
+                                placeholder="Nro Cuenta D&oacute;lares"
+                                [(ngModel)]="agency.bankInfo.accountUsd">
+                </app-form-field>
+
+                <app-form-field fxFlex="25"
+                                name="accountPesos"
+                                placeholder="Nro Cuenta Pesos"
+                                [(ngModel)]="agency.bankInfo.accountPesos">
+                </app-form-field>
+
+                <app-form-field fxFlex="25"
+                                [required]="true"
+                                name="city"
+                                placeholder="Ciudad"
+                                [(ngModel)]="agency.city">
+                </app-form-field>
+
+                <app-form-field fxFlex="25"
+                                [required]="true"
+                                name="address"
+                                placeholder="Direcci&oacute;n"
+                                [(ngModel)]="agency.address">
+                </app-form-field>
+
+                <app-form-field fxFlex="25"
+                                name="mobilePhone"
+                                placeholder="Tel&eacute;fono M&oacute;vil"
+                                [(ngModel)]="agency.mobilePhone">
+                </app-form-field>
+
+                <app-form-field fxFlex="25"
+                                [required]="true"
+                                name="telephone"
+                                placeholder="Tel&eacute;fono Fijo"
+                                [(ngModel)]="agency.telephone">
+                </app-form-field>
+
+                <app-form-field fxFlex="25"
+                                name="depositDays"
+                                placeholder="D&iacute;as de Dep&oacute;sito Acordados"
+                                [(ngModel)]="agency.depositDays">
+                </app-form-field>
+
+                <app-form-field fxFlex="25"
+                                name="website"
+                                placeholder="P&aacute;gina Web"
+                                [(ngModel)]="agency.website">
+                </app-form-field>
+
+                <mat-form-field fxFlex="25">
+                    <input matInput
+                           name="contractExpirationDate"
+                           [(ngModel)]="agency.contractExpirationDate"
+                           [matDatepicker]="contractExpirationDatePicker"
+                           placeholder="Vigencia del Contrato">
+                    <mat-datepicker-toggle matSuffix
+                                           [for]="contractExpirationDatePicker">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #contractExpirationDatePicker></mat-datepicker>
+                </mat-form-field>
+
+                <app-form-field fxFlex="25"
+                                [required]="true"
+                                name="contactEmail"
+                                placeholder="Email"
+                                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                                [(ngModel)]="agency.contactEmail">
+                </app-form-field>
+
+                <app-form-field fxFlex="25"
+                                name="franchiseValue"
+                                placeholder="Valor de la Franquicia"
+                                [(ngModel)]="agency.franchiseValue">
+                </app-form-field>
+
+                <app-form-field fxFlex="25"
+                                name="quantityEmployees"
+                                placeholder="Cantidad de Empleados"
+                                [(ngModel)]="agency.quantityEmployees">
+                </app-form-field>
+
+                <app-form-field fxFlex="25"
+                                name="paymentAgreedQuotas"
+                                placeholder="Cuotas Acordadas de Pago"
+                                [(ngModel)]="agency.paymentAgreedQuotas">
+                </app-form-field>
+
+                <app-form-field fxFlex="25"
+                                name="responsiblePersons"
+                                placeholder="Personas Responsables"
+                                [(ngModel)]="agency.responsiblePersons">
+                </app-form-field>
+
+                <app-form-field fxFlex="25"
+                                name="workingHours"
+                                placeholder="Horario de Atenci&oacute;n al Cliente y Descanso"
+                                [(ngModel)]="agency.workingHours">
+                </app-form-field>
+
+                <app-form-field fxFlex="25"
+                                name="mainCommercialActivity"
+                                placeholder="Actividad Comercial Principal"
+                                [(ngModel)]="agency.mainCommercialActivity">
+                </app-form-field>
+
+                <app-form-field fxFlex="25"
+                                name="amountCashRegisters"
+                                placeholder="Cantidad de Cajas"
+                                [(ngModel)]="agency.amountCashRegisters">
+                </app-form-field>
+
+                <app-form-field fxFlex="25"
+                                name="franchiseValue"
+                                placeholder="Valor"
+                                [(ngModel)]="agency.franchiseValue">
+                </app-form-field>
+
+                <mat-slide-toggle
+                    fxFlex="25"
+                    [checked]="agency.localityHasBank">
+                    La Localidad Tiene Banco
+                </mat-slide-toggle>
+            </div>
+            <div fxLayout="row wrap"
+                 fxLayoutGap="5px"
+                 fxLayoutAlign="end end">
+                <button mat-raised-button
+                        color="primary"
+                        type="submit"
+                        [disabled]="editForm.form.invalid">
+                    <mat-icon>save</mat-icon>
+                    Guardar
+                </button>
+            </div>
+        </form>
+
+    </mat-card-content>
+</mat-card>

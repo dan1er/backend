@@ -10,7 +10,6 @@ import {MaterialModule} from "../../../../material.module";
 import {FabListActionsModule} from "../../../../shared/modules/fab-list-actions/fab-list-actions.module";
 import {EditComponent} from "./components/edit/edit.component";
 import {FormFieldModule} from "../../../../shared/modules/form-field/form-field.module";
-import {AgencyModule} from "../agency/agency.module";
 import {MessagesModule} from "../../../../shared/modules/messages/messages.module";
 import {FiltersComponent} from "./components/filters/filters.component";
 import {NomenclatorConstants} from "./nomenclator.constants";
@@ -24,8 +23,7 @@ import {NomenclatorConstants} from "./nomenclator.constants";
         EffectsModule.forFeature([NomenclatorEffects]),
         MessagesModule,
         FabListActionsModule,
-        FormFieldModule,
-        AgencyModule
+        FormFieldModule
     ],
     declarations: [
         ListComponent,

@@ -54,6 +54,38 @@ export default class NomenclatorEffects {
         );
 
     @Effect()
+    loadBanks$: Observable<Action> = this.actions$.ofType(NomenclatorTypes.LOAD_BANKS)
+        .mergeMap(() =>
+            this.nomenclatorService.loadAllByType(NomenclatorType.Bank)
+                .switchMap((types: Nomenclator[]) => of(NomenclatorCreators.loadBanksSuccess(types)))
+                .catch((error: Error) => of(NomenclatorCreators.loadBanksFailure(error.message)))
+        );
+
+    @Effect()
+    loadDepartments$: Observable<Action> = this.actions$.ofType(NomenclatorTypes.LOAD_DEPARTMENTS)
+        .mergeMap(() =>
+            this.nomenclatorService.loadAllByType(NomenclatorType.Department)
+                .switchMap((departments: Nomenclator[]) => of(NomenclatorCreators.loadDepartmentsSuccess(departments)))
+                .catch((error: Error) => of(NomenclatorCreators.loadDepartmentsFailure(error.message)))
+        );
+
+    @Effect()
+    loadPolicyCompanies$: Observable<Action> = this.actions$.ofType(NomenclatorTypes.LOAD_POLICY_COMPANIES)
+        .mergeMap(() =>
+            this.nomenclatorService.loadAllByType(NomenclatorType.PolicyCompany)
+                .switchMap((companies: Nomenclator[]) => of(NomenclatorCreators.loadPolicyCompaniesSuccess(companies)))
+                .catch((error: Error) => of(NomenclatorCreators.loadPolicyCompaniesFailure(error.message)))
+        );
+
+    @Effect()
+    loadBankAccountTypes$: Observable<Action> = this.actions$.ofType(NomenclatorTypes.LOAD_ACCOUNT_TYPES)
+        .mergeMap(() =>
+            this.nomenclatorService.loadAllByType(NomenclatorType.BankAccountType)
+                .switchMap((types: Nomenclator[]) => of(NomenclatorCreators.loadAccountTypesSuccess(types)))
+                .catch((error: Error) => of(NomenclatorCreators.loadAccountTypesFailure(error.message)))
+        );
+
+    @Effect()
     create$: Observable<Action> = this.actions$.ofType(NomenclatorTypes.CREATE)
         .mergeMap((action: any) =>
             this.nomenclatorService.create(action.record)

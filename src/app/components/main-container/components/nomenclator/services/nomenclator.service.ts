@@ -3,6 +3,7 @@ import BaseService from "../../../../../shared/services/base.service";
 import {Observable} from "rxjs/Observable";
 import Paging from "../../../../../shared/model/paging.model";
 import Nomenclator from "../../../../../shared/model/nomenclator";
+import {NomenclatorType} from "../../../../../shared/model/nomenclator-type.model";
 
 @Injectable()
 export class NomenclatorService extends BaseService {
@@ -10,9 +11,14 @@ export class NomenclatorService extends BaseService {
         return this.httpClient.get(`${this.apiUrl}/nomenclator?page=${pageData.page}&size=${pageData.size}`, {observe: "response"});
     }
 
-    public loadData(nomenclatorname: string): Observable<Object> {
-        return this.httpClient.get(`${this.apiUrl}/nomenclator/${nomenclatorname}`, {responseType: "json"});
+    public loadData(name: string): Observable<Object> {
+        return this.httpClient.get(`${this.apiUrl}/nomenclator/${name}`, {responseType: "json"});
     }
+
+    public loadAllByType(type: NomenclatorType): Observable<Object> {
+        return this.httpClient.get(`${this.apiUrl}/nomenclator/type/${type}`, {responseType: "json"});
+    }
+
 
     public create(nomenclator: Nomenclator): Observable<Object> {
         return this.httpClient.post(`${this.apiUrl}/nomenclator`, nomenclator, {responseType: "json"});

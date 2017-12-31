@@ -10,6 +10,10 @@ export interface INomenclatorState {
     nomenclatorTypes: { label: string, value: NomenclatorType }[];
     pageData: Paging;
     appliedFilters: NomenclatorType[];
+    banks: Nomenclator[];
+    departments: Nomenclator[];
+    policyCompanies: Nomenclator[];
+    accountTypes: Nomenclator[];
 }
 
 const nomenclatorTypes = [
@@ -25,7 +29,11 @@ export const INITIAL_STATE: INomenclatorState = {
     nomenclators: [],
     nomenclatorTypes,
     pageData: new Paging(),
-    appliedFilters: []
+    appliedFilters: [],
+    banks: [],
+    departments: [],
+    policyCompanies: [],
+    accountTypes: []
 };
 
 export const request = (state = INITIAL_STATE) => {
@@ -52,6 +60,38 @@ export const loadDataFailure = (state = INITIAL_STATE) => {
     return {...state, selected: null};
 };
 
+export const loadBanksSuccess = (state = INITIAL_STATE, action: any) => {
+    return {...state, banks: action.banks};
+};
+
+export const loadBanksFailure = (state = INITIAL_STATE) => {
+    return {...state, banks: []};
+};
+
+export const loadDepartmentsSuccess = (state = INITIAL_STATE, action: any) => {
+    return {...state, departments: action.departments};
+};
+
+export const loadDepartmentsFailure = (state = INITIAL_STATE) => {
+    return {...state, departments: []};
+};
+
+export const loadPolicyCompaniesSuccess = (state = INITIAL_STATE, action: any) => {
+    return {...state, policyCompanies: action.companies};
+};
+
+export const loadPolicyCompaniesFailure = (state = INITIAL_STATE) => {
+    return {...state, policyCompanies: []};
+};
+
+export const loadAccountTypesSuccess = (state = INITIAL_STATE, action: any) => {
+    return {...state, accountTypes: action.accountTypes};
+};
+
+export const loadAccountTypesFailure = (state = INITIAL_STATE) => {
+    return {...state, accountTypes: []};
+};
+
 export const updatePageData = (state = INITIAL_STATE, action: any) => {
     return {...state, pageData: action.data};
 };
@@ -71,6 +111,14 @@ export const HANDLERS = {
     [NomenclatorTypes.SELECT]: select,
     [NomenclatorTypes.LOAD_DATA_SUCCESS]: loadDataSuccess,
     [NomenclatorTypes.LOAD_DATA_FAILURE]: loadDataFailure,
+    [NomenclatorTypes.LOAD_BANKS_SUCCESS]: loadBanksSuccess,
+    [NomenclatorTypes.LOAD_BANKS_FAILURE]: loadBanksFailure,
+    [NomenclatorTypes.LOAD_DEPARTMENTS_SUCCESS]: loadDepartmentsSuccess,
+    [NomenclatorTypes.LOAD_DEPARTMENTS_FAILURE]: loadDepartmentsFailure,
+    [NomenclatorTypes.LOAD_POLICY_COMPANIES_SUCCESS]: loadPolicyCompaniesSuccess,
+    [NomenclatorTypes.LOAD_POLICY_COMPANIES_FAILURE]: loadPolicyCompaniesFailure,
+    [NomenclatorTypes.LOAD_ACCOUNT_TYPES_SUCCESS]: loadAccountTypesSuccess,
+    [NomenclatorTypes.LOAD_ACCOUNT_TYPES_FAILURE]: loadAccountTypesFailure,
     [NomenclatorTypes.UPDATE_PAGE_DATA]: updatePageData,
     [NomenclatorTypes.UPDATE_APPLIED_FILTERS]: updateAppliedFilters,
     [NomenclatorTypes.CLEAR_SELECTED]: clearSelected

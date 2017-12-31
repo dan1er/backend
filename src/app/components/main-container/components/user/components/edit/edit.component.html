@@ -4,24 +4,23 @@
               class="edit-form"
               #editForm="ngForm"
               (submit)="submit()">
-            <div fxLayout="row wrap"
-                 fxLayoutGap="10px">
+            <div fxLayout="row wrap">
                 <app-form-field [required]="true"
                                 name="firstName"
                                 placeholder="Nombre"
-                                fxFlex="24"
+                                fxFlex="25"
                                 [(ngModel)]="user.firstName">
                 </app-form-field>
 
                 <app-form-field [required]="true"
                                 name="lastName"
                                 placeholder="Apellidos"
-                                fxFlex="24"
+                                fxFlex="25"
                                 [(ngModel)]="user.lastName">
                 </app-form-field>
 
                 <mat-form-field
-                    fxFlex="24">
+                    fxFlex="25">
                     <input matInput
                            type="text"
                            name="login"
@@ -40,7 +39,7 @@
                 </mat-form-field>
 
                 <mat-form-field
-                    fxFlex="24">
+                    fxFlex="25">
                     <input matInput
                            type="email"
                            name="email"
@@ -64,7 +63,7 @@
                 <app-form-field [required]="true"
                                 name="password"
                                 placeholder="Contrase&ntilde;a"
-                                fxFlex="24"
+                                fxFlex="25"
                                 type="password"
                                 *ngIf="!user.id"
                                 [(ngModel)]="user.password">
@@ -73,7 +72,7 @@
                 <app-form-field [required]="true"
                                 name="confirmPassword"
                                 placeholder="Confirmar Contrase&ntilde;a"
-                                fxFlex="24"
+                                fxFlex="25"
                                 type="password"
                                 *ngIf="!user.id"
                                 [matchValue]="user.password"
@@ -81,7 +80,7 @@
                 </app-form-field>
 
                 <mat-form-field
-                    fxFlex="24">
+                    fxFlex="25">
                     <mat-select name="agency"
                                 placeholder="Agencia"
                                 #agency="ngModel"
@@ -98,7 +97,7 @@
                 </mat-form-field>
 
                 <mat-form-field
-                    fxFlex="24">
+                    fxFlex="25">
                     <mat-select name="role"
                                 placeholder="Rol"
                                 multiple
