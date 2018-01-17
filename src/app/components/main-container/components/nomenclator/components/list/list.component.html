@@ -1,3 +1,5 @@
+<h1 class="sub-header">Listado de nomencladores</h1>
+
 <div class="list-container">
     <mat-card>
         <mat-card-content>
@@ -37,7 +39,7 @@
             </mat-table>
 
             <mat-paginator [length]="(pageData$|async)?.total"
-                           [pageSize]="15">
+                           [pageSize]="(pageData$|async)?.size">
             </mat-paginator>
         </mat-card-content>
     </mat-card>

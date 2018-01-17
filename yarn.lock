@@ -335,6 +335,10 @@ angular2-jwt@^0.2.3:
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/angular2-jwt/-/angular2-jwt-0.2.3.tgz#54efdda3ceedba85f6a37b165f22ac22b8adf021"
 
+angular4-fusioncharts@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/angular4-fusioncharts/-/angular4-fusioncharts-1.0.0.tgz#a5cabe5f146b2d6833180a74ce22d7fcd605e6f3"
+
 ansi-html@0.0.7:
   version "0.0.7"
   resolved "https://registry.yarnpkg.com/ansi-html/-/ansi-html-0.0.7.tgz#813584021962a9e9e6fd039f940d12f56ca7859e"
@@ -2257,6 +2261,10 @@ fstream@^1.0.0, fstream@^1.0.10, fstream@^1.0.2:
 function-bind@^1.0.2, function-bind@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.1.tgz#a56899d3ea3c9bab874bb9773b7c5ede92f4895d"
+
+fusioncharts@^3.12.2:
+  version "3.12.2"
+  resolved "https://registry.yarnpkg.com/fusioncharts/-/fusioncharts-3.12.2.tgz#df255ffd39929a1873135892460d5ce59b637176"
 
 gauge@~2.7.3:
   version "2.7.4"

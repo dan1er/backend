@@ -1,10 +1,8 @@
 import {createActions} from "reduxsauce";
 
 const {Types: LayoutTypes, Creators: LayoutCreators} = createActions({
-    initListActions: null,
-    initListActionsWithoutFiltering: null,
+    initListActions: ["isListView", "isFilteringEnabled", "isEditingEnabled"],
     enableListActionsForSelected: null,
-    disableListActions: null,
     updateListActionsStatus: ["status"],
     toggleFiltersSection: null,
     add: null,

@@ -1,0 +1,15 @@
+<div fxLayout="column wrap"
+     class="filters-section">
+    <mat-form-field>
+        <input matInput placeholder="Filtrar por descripci&oacute;n">
+    </mat-form-field>
+
+    <h1 class="sub-header">Filtrar por nivel</h1>
+    <mat-slide-toggle
+        *ngFor="let item of levels"
+        class="example-margin"
+        color="primary"
+        [checked]="item.checked">
+        {{item.label}}
+    </mat-slide-toggle>
+</div>

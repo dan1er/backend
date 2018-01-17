@@ -1,4 +1,4 @@
-<h1 class="sub-header">Listado de usuarios</h1>
+<h1 class="sub-header">Logs del sistema</h1>
 
 <div class="list-container">
     <mat-card>
@@ -17,8 +17,7 @@
                             <mat-cell *cdkCellDef="let row"
                                       class="table-row-5p">
                                 <mat-radio-button disableRipple
-                                                  (change)="columnSelected(row)"
-                                                  [checked]="row.login === selected?.login"
+                                                  [checked]="row.id === selected?.id"
                                                   color="primary">
                                 </mat-radio-button>
                             </mat-cell>
@@ -43,10 +42,4 @@
             </mat-paginator>
         </mat-card-content>
     </mat-card>
-
-    <app-fab-list-actions [canEdit]="anySelected$|async"
-                          (addClick)="onAddClick()"
-                          (editClick)="onEditClick()"
-                          (deleteClick)="onDeleteClick()">
-    </app-fab-list-actions>
 </div>

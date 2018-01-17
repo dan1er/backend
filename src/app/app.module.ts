@@ -20,8 +20,14 @@ import {SharedConstantsService} from "./shared/services/shared-constants.service
 import {StoreRouterConnectingModule} from "@ngrx/router-store";
 import {FormatService} from "./shared/services/format.service";
 import {DatePipe} from "@angular/common";
+import {FusionChartsModule} from "angular4-fusioncharts";
+import * as FusionCharts from "fusioncharts";
+import * as Charts from "fusioncharts/fusioncharts.charts";
+import * as FintTheme from "fusioncharts/themes/fusioncharts.theme.fint";
 
 const reducers = {};
+
+FusionChartsModule.fcRoot(FusionCharts, Charts, FintTheme);
 
 @NgModule({
     declarations: [
@@ -39,6 +45,7 @@ const reducers = {};
         StoreDevtoolsModule.instrument({maxAge: 50}),
         EffectsModule.forRoot([]),
         StoreRouterConnectingModule,
+        FusionChartsModule,
         LoginModule,
         MainContainerModule
     ],

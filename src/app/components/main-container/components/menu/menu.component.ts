@@ -1,5 +1,4 @@
 import {Component} from "@angular/core";
-import {environment} from "../../../../../environments/environment";
 
 interface IMenuItem {
     label: string;
@@ -55,29 +54,25 @@ export class MenuComponent {
         this.systemItems = [
             {
                 label: "Métricas",
-                icon: "watch"
+                icon: "watch",
+                route: "metricas"
             },
             {
                 label: "Salud",
-                icon: "healing"
+                icon: "healing",
+                route: "salud"
             },
             {
                 label: "Auditorías",
-                icon: "security"
+                icon: "security",
+                route: "auditorias"
             },
             {
                 label: "Logs",
-                icon: "featured_play_list"
+                icon: "featured_play_list",
+                route: "logs"
             }
         ];
-
-        if (!environment.production) {
-            this.systemItems.push(
-                {
-                    label: "Swagger",
-                    icon: "code"
-                });
-        }
 
         this.reportsItems = [
             {

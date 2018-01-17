@@ -1,13 +1,13 @@
 <div fxLayout="column wrap"
      class="filters-section">
-    <h3>Filtrar por tipo</h3>
+    <h1 class="sub-header">Filtrar por tipo</h1>
 
     <mat-slide-toggle
         *ngFor="let item of nomenclatorTypes"
         class="example-margin"
         color="primary"
         [checked]="item.checked"
-    (change)="onFilterChange(item)">
+        (change)="onFilterChange(item)">
         {{item.label}}
     </mat-slide-toggle>
 </div>

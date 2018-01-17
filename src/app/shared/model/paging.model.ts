@@ -5,7 +5,7 @@ export default class Paging {
 
     constructor(data: any = null) {
         this.page = data && data.pageIndex || 0;
-        this.size = data && data.pageSize || 15;
+        this.size = data && data.pageSize || 14;
         this.total = data && data.total || 100000;
     }
 }

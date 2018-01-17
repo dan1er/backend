@@ -1,3 +1,5 @@
+<h1 class="sub-header">Listado de agencias</h1>
+
 <div class="list-container">
     <mat-card>
         <mat-card-content>
@@ -36,7 +38,7 @@
 
             </mat-table>
 
-            <mat-paginator [pageSize]="15">
+            <mat-paginator [pageSize]="(pageData$|async)?.size">
             </mat-paginator>
         </mat-card-content>
     </mat-card>

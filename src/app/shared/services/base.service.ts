@@ -4,7 +4,8 @@ import {Injectable} from "@angular/core";
 
 @Injectable()
 export default class BaseService {
-    protected apiUrl: string = environment.apiUrl;
+    protected readonly SERVER_ADDRESS: string = environment.serverAddress;
+    protected readonly API_URL: string = `${environment.serverAddress}/api`;
 
     constructor(protected httpClient: HttpClient) {
     }

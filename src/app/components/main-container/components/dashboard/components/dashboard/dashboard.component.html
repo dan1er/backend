@@ -1,1 +1,41 @@
-Dashboard!
+<div fxLayout="column" fxLayoutGap="10px">
+    <div fxLayout="row" fxLayoutGap="10px">
+        <mat-card fxFlex>
+            <mat-card-content>
+                <fusioncharts
+                    [id]="id"
+                    [width]="width"
+                    [height]="height"
+                    [type]="type"
+                    [dataFormat]="dataFormat"
+                    [dataSource]="data">
+                </fusioncharts>
+            </mat-card-content>
+        </mat-card>
+
+        <mat-card fxFlex>
+            <mat-card-content>
+                <fusioncharts
+                    [width]="500"
+                    [height]="height"
+                    [type]="'pie3d'"
+                    [dataFormat]="dataFormat"
+                    [dataSource]="data2">
+                </fusioncharts>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+    <mat-card>
+        <mat-card-content>
+            <fusioncharts
+                [id]="'chart3'"
+                [width]="1200"
+                [height]="height"
+                [type]="'mscombi2d'"
+                [dataFormat]="dataFormat"
+                [dataSource]="data1">
+            </fusioncharts>
+        </mat-card-content>
+    </mat-card>
+</div>

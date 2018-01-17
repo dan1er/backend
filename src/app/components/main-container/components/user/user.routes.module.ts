@@ -10,7 +10,8 @@ const routes: Routes = [
         data: {
             title: "Usuarios",
             isListView: true,
-            isFilteringEnabled: false
+            isFilteringEnabled: false,
+            isEditingEnabled: true,
         }
     },
     {

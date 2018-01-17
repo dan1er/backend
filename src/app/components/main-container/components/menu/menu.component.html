@@ -13,12 +13,15 @@
 <h2>Sistema</h2>
 
 <mat-nav-list>
-    <mat-list-item *ngFor="let item of systemItems">
-        <mat-icon matListIcon>{{item.icon}}</mat-icon>
-        <a matLine
-           href="/admin/dashboard">{{ item.label }}
-        </a>
-    </mat-list-item>
+    <ng-template ngFor
+                 let-item
+                 [ngForOf]="systemItems">
+        <mat-list-item [routerLink]="item.route"
+                       routerLinkActive="active">
+            <mat-icon matListIcon>{{item.icon}}</mat-icon>
+            <a matLine> {{ item.label }} </a>
+        </mat-list-item>
+    </ng-template>
 </mat-nav-list>
 
 <h2>Reportes</h2>

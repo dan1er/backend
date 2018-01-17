@@ -1,7 +1,6 @@
 import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
 import {ListComponent} from "./components/list/list.component";
-import {EditComponent} from "./components/edit/edit.component";
 import {FiltersComponent} from "./components/filters/filters.component";
 
 const routes: Routes = [
@@ -9,31 +8,17 @@ const routes: Routes = [
         path: "",
         component: ListComponent,
         data: {
-            title: "Nomencladores",
+            title: "Logs",
             isListView: true,
-            isFilteringEnabled: true,
-            isEditingEnabled: true,
-        }
-    },
-    {
-        path: "adicionar",
-        component: EditComponent,
-        data: {
-            title: "Adicionar nomenclador"
-        }
-    },
-    {
-        path: "editar/:id",
-        component: EditComponent,
-        data: {
-            title: "Editar nomenclador"
+            isEditingEnabled: false,
+            isFilteringEnabled: true
         }
     },
     {
         path: "filtros",
         component: FiltersComponent,
         data: {
-            title: "Filters"
+            title: "Filtros"
         },
         outlet: "right"
     }
@@ -43,5 +28,5 @@ const routes: Routes = [
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
-export class NomenclatorRoutesModule {
+export class LogRoutesModule {
 }

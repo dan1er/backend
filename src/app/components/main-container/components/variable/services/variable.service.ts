@@ -7,21 +7,21 @@ import {VariableType} from "../../../../../shared/model/variable-type.model";
 @Injectable()
 export class VariableService extends BaseService {
     public create(variable: Variable): Observable<Object> {
-        return this.httpClient.post(`${this.apiUrl}/variable`, variable);
+        return this.httpClient.post(`${this.API_URL}/variable`, variable);
     }
     public find(id: string): Observable<Object> {
-        return this.httpClient.get(`${this.apiUrl}/variable/${id}`);
+        return this.httpClient.get(`${this.API_URL}/variable/${id}`);
     }
 
     public loadHistoricData(type: VariableType): Observable<Object> {
-        return this.httpClient.get(`${this.apiUrl}/variable/${type}`);
+        return this.httpClient.get(`${this.API_URL}/variable/${type}`);
     }
 
     public remove(login: string): Observable<Object> {
-        return this.httpClient.delete(`${this.apiUrl}/variable/${login}`);
+        return this.httpClient.delete(`${this.API_URL}/variable/${login}`);
     }
 
     public current(): Observable<Object> {
-        return this.httpClient.get(`${this.apiUrl}/variable/current`);
+        return this.httpClient.get(`${this.API_URL}/variable/current`);
     }
 }

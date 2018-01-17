@@ -10,7 +10,8 @@ const routes: Routes = [
         data: {
             title: "Agencias",
             isListView: true,
-            isFilteringEnabled: false
+            isFilteringEnabled: false,
+            isEditingEnabled: true,
         }
     },
     {

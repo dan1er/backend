@@ -41,7 +41,8 @@ input:-webkit-autofill {
 }
 
 .filters-section {
-    padding: 10px 0;
+    padding: 10px 10px 0 0;
+
     h3 {
         padding: 0;
         letter-spacing: 1.1px;
@@ -49,6 +50,15 @@ input:-webkit-autofill {
         color: $menu-color;
         font-size: 14px;
         font-weight: 400;
+    }
+
+    mat-form-field {
+        .mat-form-field-label-wrapper label {
+            font-size: 10px;
+            font-weight: 500;
+            text-transform: uppercase;
+            color: $sub-header-color !important;
+        }
     }
 }
 
@@ -67,6 +77,7 @@ input:-webkit-autofill {
     font-size: 10px;
     font-weight: 500;
     text-transform: uppercase;
+    color: $sub-header-color;
 }
 
 .no-padding {

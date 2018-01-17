@@ -33,6 +33,7 @@ $toolbar-height: 50px;
     mat-drawer-content {
         padding: 15px;
         background-color: $base-background;
+        overflow: hidden;
     }
 
     .mat-toolbar-multiple-rows {

@@ -5,10 +5,10 @@ import {Observable} from "rxjs/Observable";
 @Injectable()
 export class AgencyService extends BaseService {
     public loadRecords(): Observable<Object> {
-        return this.httpClient.get(`${this.apiUrl}/agency?page=0&size=10000`, {responseType: "json"});
+        return this.httpClient.get(`${this.API_URL}/agency?page=0&size=10000`, {responseType: "json"});
     }
 
     public find(id: string): Observable<Object> {
-        return this.httpClient.get(`${this.apiUrl}/agency/${id}`, {responseType: "json"});
+        return this.httpClient.get(`${this.API_URL}/agency/${id}`, {responseType: "json"});
     }
 }

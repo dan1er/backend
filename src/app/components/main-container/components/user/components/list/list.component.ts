@@ -52,7 +52,9 @@ export class ListComponent implements OnInit, AfterViewInit, OnDestroy {
             .subscribe((users: User[]) => this.dataSource.data = users);
         this.store.select(UserSelectors.selected)
             .takeUntil(this.componentDestroyed$)
-            .subscribe((user: User) => this.selected = user);
+            .subscribe((user: User) => {
+                this.selected = user;
+            });
 
         this.store.select(LayoutSelectors.layoutState)
             .takeUntil(this.componentDestroyed$)
@@ -111,6 +113,5 @@ export class ListComponent implements OnInit, AfterViewInit, OnDestroy {
 
     private loadUsers(): void {
         this.store.dispatch(UserCreators.loadUsersRequest());
-        this.store.dispatch(UserCreators.select(null));
     }
 }

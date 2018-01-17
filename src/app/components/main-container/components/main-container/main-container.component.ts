@@ -97,13 +97,11 @@ export class MainContainerComponent implements OnInit, OnDestroy {
     }
 
     private activateLayoutFeatures(data: IRouteData): void {
-        if (data && data.isListView) {
-            this.store.dispatch(data.isFilteringEnabled
-                ? LayoutCreators.initListActions()
-                : LayoutCreators.initListActionsWithoutFiltering());
-        } else {
-            this.store.dispatch(LayoutCreators.disableListActions());
-        }
+        const isListView = data && data.isListView,
+            isFilteringEnabled = data && data.isFilteringEnabled,
+            isEditingEnabled = data && data.isEditingEnabled;
+
+        this.store.dispatch(LayoutCreators.initListActions(isListView, isFilteringEnabled, isEditingEnabled));
     }
 
     private notify(value: string): void {
