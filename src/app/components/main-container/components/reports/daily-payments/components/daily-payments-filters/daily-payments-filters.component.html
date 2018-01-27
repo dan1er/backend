@@ -1,0 +1,27 @@
+<div fxLayout="column wrap"
+     class="filters-section">
+    <h1 class="sub-header">Filtros</h1>
+
+    <mat-form-field>
+        <input matInput
+               name="date"
+               [matDatepicker]="date"
+               placeholder="Fecha"
+               [(ngModel)]="selectedDate">
+        <mat-datepicker-toggle matSuffix
+                               [for]="date">
+        </mat-datepicker-toggle>
+        <mat-datepicker #date></mat-datepicker>
+    </mat-form-field>
+
+    <div fxLayout="row wrap"
+         fxLayoutGap="5px"
+         fxLayoutAlign="end end">
+        <button mat-raised-button
+                color="primary"
+                type="submit">
+            <mat-icon>save</mat-icon>
+            Descargar
+        </button>
+    </div>
+</div>

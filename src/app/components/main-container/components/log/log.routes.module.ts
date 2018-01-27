@@ -6,12 +6,17 @@ import {FiltersComponent} from "./components/filters/filters.component";
 const routes: Routes = [
     {
         path: "",
+        redirectTo: "listado",
+        pathMatch: "full"
+    },
+    {
+        path: "listado",
         component: ListComponent,
         data: {
             title: "Logs",
             isListView: true,
             isEditingEnabled: false,
-            isFilteringEnabled: true
+            filters: {enabled: true, expanded: false},
         }
     },
     {

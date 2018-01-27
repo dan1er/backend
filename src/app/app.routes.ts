@@ -55,6 +55,10 @@ export const routes: Routes = [
             {
                 path: "logs",
                 loadChildren: "./components/main-container/components/log/log.module#LogModule"
+            },
+            {
+                path: "reportes",
+                loadChildren: "./components/main-container/components/reports/reports.module#ReportsModule"
             }
         ]
     },

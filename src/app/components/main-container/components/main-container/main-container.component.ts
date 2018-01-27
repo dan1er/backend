@@ -47,7 +47,6 @@ export class MainContainerComponent implements OnInit, OnDestroy {
                     this.title = data.title;
                     this.titleService.setTitle(this.title);
                     this.activateLayoutFeatures(data);
-
                 }
             });
         setTimeout(() => {
@@ -98,10 +97,10 @@ export class MainContainerComponent implements OnInit, OnDestroy {
 
     private activateLayoutFeatures(data: IRouteData): void {
         const isListView = data && data.isListView,
-            isFilteringEnabled = data && data.isFilteringEnabled,
+            filters = data && data.filters,
             isEditingEnabled = data && data.isEditingEnabled;
 
-        this.store.dispatch(LayoutCreators.initListActions(isListView, isFilteringEnabled, isEditingEnabled));
+        this.store.dispatch(LayoutCreators.initListActions(isListView, filters, isEditingEnabled));
     }
 
     private notify(value: string): void {

@@ -29,13 +29,14 @@ export const toggleFiltersSection = (state = INITIAL_STATE) => {
 };
 
 export const initListActions = (state = INITIAL_STATE, action: any) => {
-    const {isListView, isFilteringEnabled, isEditingEnabled} = action;
+    const {isListView, filters, isEditingEnabled} = action;
     return {
         ...state,
         add: new LayoutItemStatus({visible: isListView && isEditingEnabled}),
         edit: new LayoutItemStatus({visible: false}),
         remove: new LayoutItemStatus({visible: false}),
-        filter: new LayoutItemStatus({visible: isListView && isFilteringEnabled})
+        filter: new LayoutItemStatus({visible: filters && filters.enabled}),
+        filtersSection: new LayoutItemStatus({visible: filters && filters.expanded})
     };
 };
 

@@ -42,7 +42,7 @@ export class MenuComponent {
             {
                 label: "Nomencladores",
                 icon: "domain",
-                route: "nomencladores"
+                route: "nomencladores/listado"
             },
             {
                 label: "Variables",
@@ -70,18 +70,25 @@ export class MenuComponent {
             {
                 label: "Logs",
                 icon: "featured_play_list",
-                route: "logs"
+                route: "logs/listado"
             }
         ];
 
         this.reportsItems = [
             {
                 label: "Comisión de servicios",
-                icon: "insert_chart"
+                icon: "insert_chart",
+                route: "reportes/reporte-comision-servicios"
             },
             {
                 label: "Reporte de agentes",
-                icon: "insert_chart"
+                icon: "insert_chart",
+                route: "reportes/reporte-agentes"
+            },
+            {
+                label: "Cobranza diaria",
+                icon: "insert_chart",
+                route: "reportes/cobranza-diaria"
             }
         ];
     }

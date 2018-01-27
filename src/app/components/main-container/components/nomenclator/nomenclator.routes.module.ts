@@ -7,11 +7,16 @@ import {FiltersComponent} from "./components/filters/filters.component";
 const routes: Routes = [
     {
         path: "",
+        redirectTo: "listado",
+        pathMatch: "full"
+    },
+    {
+        path: "listado",
         component: ListComponent,
         data: {
             title: "Nomencladores",
             isListView: true,
-            isFilteringEnabled: true,
+            filters: { enabled: true, expanded: false },
             isEditingEnabled: true,
         }
     },
