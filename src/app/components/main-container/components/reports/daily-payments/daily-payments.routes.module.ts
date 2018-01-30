@@ -1,7 +1,7 @@
 import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
-import {DailyPaymentsComponent} from "./daily-payments/components/daily-payments/daily-payments.component";
-import {DailyPaymentsFiltersComponent} from "./daily-payments/components/daily-payments-filters/daily-payments-filters.component";
+import {DailyPaymentsComponent} from "./components/daily-payments/daily-payments.component";
+import {DailyPaymentsFiltersComponent} from "./components/daily-payments-filters/daily-payments-filters.component";
 
 const routes: Routes = [
     {
@@ -15,8 +15,8 @@ const routes: Routes = [
         data: {
             title: "Cobranza diaria",
             isListView: true,
-            filters: { enabled: true, expanded: true },
-            isEditingEnabled: false,
+            filters: {enabled: true, expanded: true},
+            isEditingEnabled: false
         }
     },
     {
@@ -33,5 +33,5 @@ const routes: Routes = [
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
-export class ReportsRoutesModule {
+export class DailyPaymentsRoutesModule {
 }

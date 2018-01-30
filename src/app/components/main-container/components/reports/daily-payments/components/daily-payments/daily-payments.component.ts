@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnDestroy, OnInit} from "@angular/core";
 import {TakeUntilDestroy} from "ngx-take-until-destroy";
 import {Store} from "@ngrx/store";
 import State from "../../../../../../../shared/redux/state";
@@ -16,7 +16,7 @@ import {MatTableDataSource} from "@angular/material";
     templateUrl: "./daily-payments.component.html",
     styleUrls: ["./daily-payments.component.scss"]
 })
-export class DailyPaymentsComponent implements OnInit {
+export class DailyPaymentsComponent implements OnInit, OnDestroy {
     public componentDestroyed$: Subject<boolean>;
     public dataSource = new MatTableDataSource();
     public columns = [
@@ -38,9 +38,13 @@ export class DailyPaymentsComponent implements OnInit {
             .subscribe((value: boolean) => this.navigateToFilters(value));
     }
 
+    public ngOnDestroy(): void {
+        // empty for autounsubscribe on aot
+    }
+
     private navigateToFilters(value: boolean) {
         if (value) {
-            this.router.navigate(["admin", "reportes", {outlets: {"right": ["filtros"]}}]);
+            this.router.navigate(["admin", "reporte-cobranza", {outlets: {"right": ["filtros"]}}]);
         }
     }
 }

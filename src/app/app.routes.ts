@@ -57,8 +57,12 @@ export const routes: Routes = [
                 loadChildren: "./components/main-container/components/log/log.module#LogModule"
             },
             {
-                path: "reportes",
-                loadChildren: "./components/main-container/components/reports/reports.module#ReportsModule"
+                path: "reporte-comision-servicios",
+                loadChildren: "./components/main-container/components/reports/commission-services/commission-services.module#CommissionServicesModule"
+            },
+            {
+                path: "reporte-cobranza",
+                loadChildren: "./components/main-container/components/reports/daily-payments/daily-payments.module#DailyPaymentsModule"
             }
         ]
     },

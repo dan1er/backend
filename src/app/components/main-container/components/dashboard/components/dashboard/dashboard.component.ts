@@ -15,30 +15,30 @@ export class DashboardComponent {
     public get data(): any {
         return {
             "chart": {
-                "caption": "Harry's SuperMart",
-                "subCaption": "Top 5 stores in last month by revenue",
+                "caption": "Test data",
+                "subCaption": "Test data subcaption",
                 "numberprefix": "$",
                 "theme": "fint"
             },
             "data": [
                 {
-                    "label": "Bakersfield Central",
+                    "label": "1",
                     "value": "880000"
                 },
                 {
-                    "label": "Garden Groove harbour",
+                    "label": "2",
                     "value": "730000"
                 },
                 {
-                    "label": "Los Angeles Topanga",
+                    "label": "3",
                     "value": "590000"
                 },
                 {
-                    "label": "Compton-Rancho Dom",
+                    "label": "4",
                     "value": "520000"
                 },
                 {
-                    "label": "Daly City Serramonte",
+                    "label": "5",
                     "value": "330000"
                 }
             ]
@@ -48,7 +48,7 @@ export class DashboardComponent {
     public get data1(): any {
         return {
             "chart": {
-                "caption": "Actual Revenues, Targeted Revenues & Profits",
+                "caption": "Test data",
                 "subcaption": "Last year",
                 "xaxisname": "Month",
                 "yaxisname": "Amount (In USD)",
@@ -232,7 +232,7 @@ export class DashboardComponent {
     public get data2(): any {
         return {
             "chart": {
-                "caption": "Bakersfield Central - Total footfalls",
+                "caption": "Test data",
                 "subCaption": "Last week",
                 "xAxisName": "Day",
                 "yAxisName": "No. of Visitors (In 1000s)",

@@ -78,7 +78,7 @@ export class MenuComponent {
             {
                 label: "Comisión de servicios",
                 icon: "insert_chart",
-                route: "reportes/reporte-comision-servicios"
+                route: "reporte-comision-servicios/comision-servicios"
             },
             {
                 label: "Reporte de agentes",
@@ -88,7 +88,7 @@ export class MenuComponent {
             {
                 label: "Cobranza diaria",
                 icon: "insert_chart",
-                route: "reportes/cobranza-diaria"
+                route: "reporte-cobranza/cobranza-diaria"
             }
         ];
     }
