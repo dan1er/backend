@@ -9,4 +9,8 @@ export default class BaseService {
 
     constructor(protected httpClient: HttpClient) {
     }
+
+    public get ApiUrl(): string {
+        return this.API_URL;
+    }
 }

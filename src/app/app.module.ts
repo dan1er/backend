@@ -19,7 +19,7 @@ import {OverlayModule} from "@angular/cdk/overlay";
 import {SharedConstantsService} from "./shared/services/shared-constants.service";
 import {StoreRouterConnectingModule} from "@ngrx/router-store";
 import {FormatService} from "./shared/services/format.service";
-import {DatePipe} from "@angular/common";
+import {DatePipe, DecimalPipe} from "@angular/common";
 import {FusionChartsModule} from "angular4-fusioncharts";
 import * as FusionCharts from "fusioncharts";
 import * as Charts from "fusioncharts/fusioncharts.charts";
@@ -55,6 +55,7 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FintTheme);
         SharedConstantsService,
         FormatService,
         DatePipe,
+        DecimalPipe,
         {provide: HTTP_INTERCEPTORS, useClass: AuthorizationInterceptor, multi: true},
         {provide: HTTP_INTERCEPTORS, useClass: ResponseInterceptor, multi: true}
     ],

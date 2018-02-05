@@ -15,7 +15,7 @@ export class CommissionServicesTotalsComponent implements OnChanges {
     public ngOnChanges(changes: SimpleChanges): void {
         if (changes["totals"]) {
             const record = changes["totals"].currentValue;
-            this.dataSource.data = record ? [record] : [];
+            this.dataSource.data = record && record["serviceName"] ? [record] : [];
         }
     }
 }
