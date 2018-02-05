@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>Reporte de comisiones</h2>
+<mat-dialog-content>
+    <div fxLayout="column wrap">
+        <app-form-field placeholder="A"
+                        [readonly]="true"
+                        [(ngModel)]="to">
+        </app-form-field>
+
+        <app-form-field placeholder="CC"
+                        email
+                        [(ngModel)]="cc">
+        </app-form-field>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions fxLayout="row wrap" fxLayoutAlign="center center">
+    <button mat-raised-button mat-dialog-close>Cerrar</button>
+    <button mat-raised-button color="primary" (click)="closeDialog()">
+        <mat-icon>email</mat-icon>
+        Enviar
+    </button>
+</mat-dialog-actions>

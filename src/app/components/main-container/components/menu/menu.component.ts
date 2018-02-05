@@ -83,7 +83,7 @@ export class MenuComponent {
             {
                 label: "Reporte de agentes",
                 icon: "insert_chart",
-                route: "reportes/reporte-agentes"
+                route: "reporte-agentes/agentes"
             },
             {
                 label: "Cobranza diaria",

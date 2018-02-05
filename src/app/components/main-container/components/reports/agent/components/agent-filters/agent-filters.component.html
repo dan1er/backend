@@ -2,6 +2,20 @@
      class="filters-section">
     <h1 class="sub-header">Filtros</h1>
 
+    <mat-form-field
+        fxFlex="24">
+        <mat-select name="agency"
+                    placeholder="Agencia"
+                    (change)="updateFilters(filters)"
+                    [(ngModel)]="filters.agency">
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let item of agencies$|async"
+                        [value]="item.id">
+                {{ item.name }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
     <mat-form-field>
         <input matInput
                name="startDate"
@@ -28,9 +42,25 @@
         <mat-datepicker #endDate></mat-datepicker>
     </mat-form-field>
 
-    <h1 class="sub-header">Acciones</h1>
+    <div fxLayout="column wrap" fxLayoutGap="10px" *ngIf="hasRecords$|async">
+        <h1 class="sub-header">Acciones</h1>
 
-    <div fxLayout="column wrap" fxLayoutGap="10px">
+        <button mat-raised-button
+                *ngIf="filters.agency"
+                color="primary"
+                (click)="emailCurrentReport()">
+            <mat-icon>email</mat-icon>
+            Reporte actual
+        </button>
+
+        <button mat-raised-button
+                color="primary"
+                *ngIf="filters.agency"
+                (click)="emailLastMonthReport()">
+            <mat-icon>email</mat-icon>
+            Reporte mes vencido
+        </button>
+
         <button mat-raised-button
                 color="primary"
                 (click)="savePdf()">

@@ -22,6 +22,7 @@ export const routes: Routes = [
         data: {
             title: "Admin"
         },
+        /*tslint:disable*/
         children: [
             {
                 path: "",
@@ -63,8 +64,13 @@ export const routes: Routes = [
             {
                 path: "reporte-cobranza",
                 loadChildren: "./components/main-container/components/reports/daily-payments/daily-payments.module#DailyPaymentsModule"
+            },
+            {
+                path: "reporte-agentes",
+                loadChildren: "./components/main-container/components/reports/agent/agent.module#AgentModule"
             }
         ]
+        /*tslint:enable*/
     },
     {path: "**", redirectTo: "login"}
 ];

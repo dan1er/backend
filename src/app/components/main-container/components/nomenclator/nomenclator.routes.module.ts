@@ -16,7 +16,7 @@ const routes: Routes = [
         data: {
             title: "Nomencladores",
             isListView: true,
-            filters: { enabled: true, expanded: false },
+            filters: { enabled: true, expanded: true },
             isEditingEnabled: true,
         }
     },
