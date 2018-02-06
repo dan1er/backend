@@ -10,7 +10,8 @@ const {Types: VariableTypes, Creators: VariableCreators} = createActions({
     create: ["record"],
     createSuccess: null,
     createFailure: ["error"],
-    select: ["selected"]
+    select: ["selected"],
+    reset: null
 }, {prefix: "VARIABLE_"});
 
 export {VariableTypes, VariableCreators};

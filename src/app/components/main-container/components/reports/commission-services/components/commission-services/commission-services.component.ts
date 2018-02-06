@@ -8,7 +8,7 @@ import {Subject} from "rxjs/Subject";
 import {LayoutSelectors} from "../../../../../redux";
 import {Store} from "@ngrx/store";
 import {TakeUntilDestroy} from "ngx-take-until-destroy";
-import {CommissionServicesSelectors} from "../../redux";
+import {CommissionServicesCreators, CommissionServicesSelectors} from "../../redux";
 import {ICommissionService} from "../../redux/reducer";
 import {FormatService} from "../../../../../../../shared/services/format.service";
 
@@ -53,7 +53,7 @@ export class CommissionServicesComponent implements OnInit, AfterViewInit, OnDes
     }
 
     public ngOnDestroy(): void {
-        // empty for autounsubscribe on aot
+        this.store.dispatch(CommissionServicesCreators.reset());
     }
 
     private navigateToFilters(value: boolean) {

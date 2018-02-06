@@ -5,7 +5,8 @@ const {Types: CommissionServicesTypes, Creators: CommissionServicesCreators} = c
     getServicesSuccess: ["services", "totals"],
     getServicesFailure: ["error"],
     updatePageData: ["data"],
-    updateFilters: ["filters"]
+    updateFilters: ["filters"],
+    reset: null
 }, {prefix: "CommissionServices_"});
 
 export {CommissionServicesTypes, CommissionServicesCreators};

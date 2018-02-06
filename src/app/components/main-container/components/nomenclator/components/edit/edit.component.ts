@@ -40,7 +40,7 @@ export class EditComponent implements OnInit, OnDestroy {
     }
 
     public ngOnDestroy(): void {
-        // empty for autounsubscribe on aot
+        this.store.dispatch(NomenclatorCreators.reset());
     }
 
     public submit(): void {

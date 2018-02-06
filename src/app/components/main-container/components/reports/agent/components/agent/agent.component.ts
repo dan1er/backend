@@ -8,7 +8,7 @@ import {Subject} from "rxjs/Subject";
 import {LayoutSelectors} from "../../../../../redux";
 import {Store} from "@ngrx/store";
 import {TakeUntilDestroy} from "ngx-take-until-destroy";
-import {AgentSelectors} from "../../redux";
+import {AgentCreators, AgentSelectors} from "../../redux";
 import {FormatService} from "../../../../../../../shared/services/format.service";
 import {IAgentRecord} from "../../redux/reducer";
 
@@ -49,7 +49,7 @@ export class AgentComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     public ngOnDestroy(): void {
-        // empty for autounsubscribe on aot
+        this.store.dispatch(AgentCreators.reset());
     }
 
     private navigateToFilters(value: boolean) {

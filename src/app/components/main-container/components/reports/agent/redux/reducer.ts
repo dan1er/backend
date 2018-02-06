@@ -67,6 +67,10 @@ export const updateFilters = (state = INITIAL_STATE, action: any) => {
     return {...state, filters: action.filters};
 };
 
+export const reset = () => {
+    return {...INITIAL_STATE};
+};
+
 export const HANDLERS = {
     [AgentTypes.GET_RECORDS]: request,
     [AgentTypes.GET_RECORDS_SUCCESS]: success,
@@ -75,7 +79,8 @@ export const HANDLERS = {
     [AgentTypes.GET_AGENCIES_SUCCESS]: getAgenciesSuccess,
     [AgentTypes.GET_AGENCIES_FAILURE]: getAgenciesFailure,
     [AgentTypes.UPDATE_PAGE_DATA]: updatePageData,
-    [AgentTypes.UPDATE_FILTERS]: updateFilters
+    [AgentTypes.UPDATE_FILTERS]: updateFilters,
+    [AgentTypes.RESET]: reset
 };
 
 export default createReducer(INITIAL_STATE, HANDLERS);

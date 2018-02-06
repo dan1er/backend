@@ -37,13 +37,18 @@ export const loadHistoricDataFailure = (state = INITIAL_STATE) => {
     return {...state, historicData: []};
 };
 
+export const reset = () => {
+    return {...INITIAL_STATE};
+};
+
 export const HANDLERS = {
     [VariableTypes.LOAD_VARIABLES_REQUEST]: request,
     [VariableTypes.LOAD_VARIABLES_SUCCESS]: success,
     [VariableTypes.LOAD_VARIABLES_FAILURE]: failure,
     [VariableTypes.SELECT]: select,
     [VariableTypes.LOAD_HISTORIC_DATA_SUCCESS]: loadHistoricDataSuccess,
-    [VariableTypes.LOAD_HISTORIC_DATA_FAILURE]: loadHistoricDataFailure
+    [VariableTypes.LOAD_HISTORIC_DATA_FAILURE]: loadHistoricDataFailure,
+    [VariableTypes.RESET]: reset
 };
 
 export default createReducer(INITIAL_STATE, HANDLERS);

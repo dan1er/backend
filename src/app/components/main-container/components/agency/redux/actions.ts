@@ -20,7 +20,8 @@ const {Types: AgencyTypes, Creators: AgencyCreators} = createActions({
     goToList: ["path"],
     clearSelected: null,
     addCommand: null,
-    editCommand: null
+    editCommand: null,
+    reset: null
 }, {prefix: "AGENCY_"});
 
 export {AgencyTypes, AgencyCreators};

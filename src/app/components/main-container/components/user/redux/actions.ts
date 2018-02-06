@@ -21,7 +21,8 @@ const {Types: UserTypes, Creators: UserCreators} = createActions({
     updatePageData: ["data"],
     clearSelected: null,
     addCommand: null,
-    editCommand: null
+    editCommand: null,
+    reset: null
 }, {prefix: "USER_"});
 
 export {UserTypes, UserCreators};

@@ -42,6 +42,10 @@ export const clearSelected = (state = INITIAL_STATE) => {
     return {...state, selected: null};
 };
 
+export const reset = () => {
+    return {...INITIAL_STATE};
+};
+
 export const HANDLERS = {
     [AgencyTypes.LOAD_RECORDS_REQUEST]: request,
     [AgencyTypes.LOAD_RECORDS_SUCCESS]: success,
@@ -49,7 +53,8 @@ export const HANDLERS = {
     [AgencyTypes.SELECT]: select,
     [AgencyTypes.LOAD_DATA_SUCCESS]: loadDataSuccess,
     [AgencyTypes.LOAD_DATA_FAILURE]: loadDataFailure,
-    [AgencyTypes.CLEAR_SELECTED]: clearSelected
+    [AgencyTypes.CLEAR_SELECTED]: clearSelected,
+    [AgencyTypes.RESET]: reset
 };
 
 export default createReducer(INITIAL_STATE, HANDLERS);

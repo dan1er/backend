@@ -56,12 +56,17 @@ export const updateFilters = (state = INITIAL_STATE, action: any) => {
     return {...state, filters: action.filters};
 };
 
+export const reset = () => {
+    return {...INITIAL_STATE};
+};
+
 export const HANDLERS = {
     [CommissionServicesTypes.GET_SERVICES]: request,
     [CommissionServicesTypes.GET_SERVICES_SUCCESS]: success,
     [CommissionServicesTypes.GET_SERVICES_FAILURE]: failure,
     [CommissionServicesTypes.UPDATE_PAGE_DATA]: updatePageData,
-    [CommissionServicesTypes.UPDATE_FILTERS]: updateFilters
+    [CommissionServicesTypes.UPDATE_FILTERS]: updateFilters,
+    [CommissionServicesTypes.RESET]: reset
 };
 
 export default createReducer(INITIAL_STATE, HANDLERS);

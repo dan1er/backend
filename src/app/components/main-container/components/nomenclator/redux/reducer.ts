@@ -104,6 +104,10 @@ export const clearSelected = (state = INITIAL_STATE) => {
     return {...state, selected: null};
 };
 
+export const reset = () => {
+    return {...INITIAL_STATE};
+};
+
 export const HANDLERS = {
     [NomenclatorTypes.LOAD_NOMENCLATORS_REQUEST]: request,
     [NomenclatorTypes.LOAD_NOMENCLATORS_SUCCESS]: success,
@@ -121,7 +125,8 @@ export const HANDLERS = {
     [NomenclatorTypes.LOAD_ACCOUNT_TYPES_FAILURE]: loadAccountTypesFailure,
     [NomenclatorTypes.UPDATE_PAGE_DATA]: updatePageData,
     [NomenclatorTypes.UPDATE_APPLIED_FILTERS]: updateAppliedFilters,
-    [NomenclatorTypes.CLEAR_SELECTED]: clearSelected
+    [NomenclatorTypes.CLEAR_SELECTED]: clearSelected,
+    [NomenclatorTypes.RESET]: reset
 };
 
 export default createReducer(INITIAL_STATE, HANDLERS);

@@ -74,7 +74,7 @@ export class ListComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     public ngOnDestroy(): void {
-        // empty for autounsubscribe on aot
+        this.store.dispatch(AgencyCreators.reset());
     }
 
     public columnSelected(selected: Agency): void {

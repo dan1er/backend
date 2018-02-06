@@ -14,7 +14,8 @@ const {Types: AgentTypes, Creators: AgentCreators} = createActions({
     emailLastMonthReportSuccess: null,
     emailLastMonthReportFailure: null,
     updatePageData: ["data"],
-    updateFilters: ["filters"]
+    updateFilters: ["filters"],
+    reset: null
 }, {prefix: "Agent_"});
 
 export {AgentTypes, AgentCreators};

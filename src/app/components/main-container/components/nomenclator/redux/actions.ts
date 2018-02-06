@@ -34,7 +34,8 @@ const {Types: NomenclatorTypes, Creators: NomenclatorCreators} = createActions({
     loadAccountTypesFailure: null,
     loadPolicyCompanies: null,
     loadPolicyCompaniesSuccess: ["companies"],
-    loadPolicyCompaniesFailure: null
+    loadPolicyCompaniesFailure: null,
+    reset: null
 }, {prefix: "NOMENCLATOR_"});
 
 export {NomenclatorTypes, NomenclatorCreators};

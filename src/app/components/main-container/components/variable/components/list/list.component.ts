@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnDestroy, OnInit} from "@angular/core";
 import {Store} from "@ngrx/store";
 import State from "../../../../../../shared/redux/state";
 import {VariableCreators} from "../../redux";
@@ -11,7 +11,7 @@ import {historicData, selectedVariable, variables} from "../../redux/selectors";
     templateUrl: "./list.component.html",
     styleUrls: ["./list.component.scss"]
 })
-export class ListComponent implements OnInit {
+export class ListComponent implements OnInit, OnDestroy {
     public variables$: Observable<Variable[]>;
     public historicData$: Observable<Variable[]>;
     public selectedVariable: Variable;
@@ -32,6 +32,10 @@ export class ListComponent implements OnInit {
 
     public onChange(): void {
         this.store.dispatch(VariableCreators.select(this.selectedVariable));
+    }
+
+    public ngOnDestroy(): void {
+        this.store.dispatch(VariableCreators.reset());
     }
 
     public compareFn(val1: Variable, val2: Variable): boolean {
