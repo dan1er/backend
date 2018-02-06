@@ -54,10 +54,6 @@ export const routes: Routes = [
                 loadChildren: "./components/main-container/components/variable/variable.module#VariableModule"
             },
             {
-                path: "logs",
-                loadChildren: "./components/main-container/components/log/log.module#LogModule"
-            },
-            {
                 path: "reporte-comision-servicios",
                 loadChildren: "./components/main-container/components/reports/commission-services/commission-services.module#CommissionServicesModule"
             },

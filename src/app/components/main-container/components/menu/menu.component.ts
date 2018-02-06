@@ -51,29 +51,6 @@ export class MenuComponent {
             }
         ];
 
-        this.systemItems = [
-            {
-                label: "Métricas",
-                icon: "watch",
-                route: "metricas"
-            },
-            {
-                label: "Salud",
-                icon: "healing",
-                route: "salud"
-            },
-            {
-                label: "Auditorías",
-                icon: "security",
-                route: "auditorias"
-            },
-            {
-                label: "Logs",
-                icon: "featured_play_list",
-                route: "logs/listado"
-            }
-        ];
-
         this.reportsItems = [
             {
                 label: "Comisión de servicios",
