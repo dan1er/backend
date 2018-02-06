@@ -23,6 +23,7 @@ export class MainContainerComponent implements OnInit, OnDestroy {
     public componentDestroyed$: Subject<boolean>;
     public layoutState$: Observable<ILayoutState>;
     public title: string;
+    public menuVisible: boolean;
 
     constructor(private router: Router,
                 private route: ActivatedRoute,
@@ -36,6 +37,7 @@ export class MainContainerComponent implements OnInit, OnDestroy {
         let data: IRouteData = this.getRouteData(this.route.snapshot.root);
         this.title = data.title;
         this.titleService.setTitle(this.title);
+        this.menuVisible = true;
         this.activateLayoutFeatures(data);
 
         this.layoutState$ = this.store.select(LayoutSelectors.layoutState);
@@ -67,6 +69,10 @@ export class MainContainerComponent implements OnInit, OnDestroy {
 
     public toggleFiltersSection(): void {
         this.store.dispatch(LayoutCreators.toggleFiltersSection());
+    }
+
+    public toggleMenuSection(): void {
+        this.menuVisible = !this.menuVisible;
     }
 
     private getRouteData(routeSnapshot: ActivatedRouteSnapshot): IRouteData {

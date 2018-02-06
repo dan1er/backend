@@ -39,4 +39,12 @@ $toolbar-height: 50px;
     .mat-toolbar-multiple-rows {
         min-height: $toolbar-height;
     }
+
+    .app-logo {
+        width: 174px;
+        height: 48px;
+        background-size: 138px 45px !important;;
+        background-image: url("../../../../../assets/images/logo.png") !important;
+        background-repeat: no-repeat;
+    }
 }

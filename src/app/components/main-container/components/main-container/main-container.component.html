@@ -1,8 +1,11 @@
 <div class="main-container">
     <mat-toolbar color="primary">
         <mat-toolbar-row>
-            <button mat-icon-button>
-                <mat-icon>reorder</mat-icon>
+            <span class="app-logo"></span>
+
+            <button mat-icon-button
+                    (click)="toggleMenuSection()">
+                <mat-icon>view_headline</mat-icon>
             </button>
 
             <h4>{{title}}</h4>
@@ -48,7 +51,7 @@
 
     <mat-drawer-container>
         <mat-drawer mode="side"
-                    opened="true">
+                    [opened]="menuVisible">
             <app-menu></app-menu>
         </mat-drawer>
 
